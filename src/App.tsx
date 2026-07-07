@@ -10,6 +10,7 @@ import {
 
 import ThreeCanvas from "./components/ThreeCanvas";
 import ChatbotWidget from "./components/ChatbotWidget";
+import ParallaxImage from "./components/ParallaxImage";
 // @ts-ignore
 import macarenaGraduation from "./assets/images/macarena_graduation_1783457542849.jpg";
 import { BLOG_POSTS, MUSIC_RELEASES, BEAUTY_PRODUCTS, FASHION_LOOKS, PRICING_PLANS } from "./data";
@@ -488,7 +489,7 @@ export default function App() {
                 <div className="relative p-2 border-2 border-dashed border-baby-blue rounded-[32px] max-w-md w-full">
                   <div className="overflow-hidden rounded-[24px] aspect-[4/5] bg-slate-100 shadow-lg">
                     <img 
-                      src={macarenaGraduation} 
+                      src="https://gjoznmzw2bc0wpip.public.blob.vercel-storage.com/A7406416.jpg" 
                       alt="Macarena Mantilla Profile" 
                       className="w-full h-full object-cover hover:scale-[1.02] transition-all duration-700"
                       referrerPolicy="no-referrer"
@@ -636,11 +637,10 @@ export default function App() {
                   className="bg-white border border-slate-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all group flex flex-col cursor-pointer"
                 >
                   <div className="relative aspect-[16/10] bg-slate-100 overflow-hidden">
-                    <img 
+                    <ParallaxImage 
                       src={post.image} 
                       alt={post.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      referrerPolicy="no-referrer"
+                      containerClassName="w-full h-full" 
                     />
                     
                     {/* Category Label */}
