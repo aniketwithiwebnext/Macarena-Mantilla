@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   BookOpen, Music, Sparkles, Heart, Mail, Phone, ArrowUp, 
@@ -50,6 +50,20 @@ export default function App() {
   // Contact Form states
   const [contactForm, setContactForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [contactSubmitted, setContactSubmitted] = useState(false);
+
+  // Hero Video volume/mute control
+  const [heroVideoMuted, setHeroVideoMuted] = useState(true);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+
+  const toggleHeroVideoMuted = () => {
+    if (heroVideoRef.current) {
+      const targetMuted = !heroVideoRef.current.muted;
+      heroVideoRef.current.muted = targetMuted;
+      setHeroVideoMuted(targetMuted);
+    } else {
+      setHeroVideoMuted(prev => !prev);
+    }
+  };
 
   // Monitor scroll for scroll-to-top button
   useEffect(() => {
@@ -261,15 +275,18 @@ export default function App() {
           <div id="view-home">
             {/* Hero Section */}
             <section className="relative overflow-hidden py-10 md:py-20 lg:py-24 bg-gradient-to-b from-pastel-blue/60 via-cream to-cream">
-              {/* Warm organic textured background image */}
+              {/* Warm organic textured background video */}
               <div className="absolute inset-0 z-0 pointer-events-none select-none">
-                <img 
-                  src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=1600" 
-                  alt="Warm Organic Sunlight Texture" 
-                  className="w-full h-full object-cover opacity-20 mix-blend-multiply filter sepia-[15%]"
-                  referrerPolicy="no-referrer"
+                <video 
+                  ref={heroVideoRef}
+                  src="https://gjoznmzw2bc0wpip.public.blob.vercel-storage.com/Macarena%20Mantilla.mp4" 
+                  autoPlay
+                  loop
+                  muted={heroVideoMuted}
+                  playsInline
+                  className="w-full h-full object-cover opacity-60 filter sepia-[5%]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-pastel-blue/40 via-cream/70 to-cream" />
+                <div className="absolute inset-0 bg-gradient-to-b from-pastel-blue/10 via-cream/40 to-cream" />
               </div>
 
               <div className="relative z-10 max-w-4xl mx-auto px-6 text-center flex flex-col items-center justify-center">
@@ -293,13 +310,13 @@ export default function App() {
                   {/* CTA Buttons */}
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
                     <button 
-                      onClick={() => navigateTo("blog")}
+                       onClick={() => navigateTo("blog")}
                       className="bg-charcoal text-white hover:bg-slate-800 text-xs uppercase tracking-widest px-8 py-4 rounded-full font-semibold transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 w-full sm:w-auto"
                     >
                       Explore the Blog <ChevronRight className="w-4 h-4" />
                     </button>
                     <button 
-                      onClick={() => navigateTo("premium")}
+                       onClick={() => navigateTo("premium")}
                       className="glass text-charcoal hover:bg-white text-xs uppercase tracking-widest px-8 py-4 rounded-full font-semibold transition-all border border-slate-300 shadow-sm flex items-center justify-center gap-2 w-full sm:w-auto"
                     >
                       Join Premium
@@ -338,6 +355,21 @@ export default function App() {
                     )}
                   </div>
                 </div>
+              </div>
+
+              {/* Floating Mute/Unmute Control for background video */}
+              <div className="absolute bottom-4 right-4 z-20">
+                <button
+                  onClick={toggleHeroVideoMuted}
+                  className="w-10 h-10 rounded-full bg-white/80 backdrop-blur border border-slate-200 shadow hover:bg-white hover:scale-105 transition-all flex items-center justify-center text-charcoal"
+                  title={heroVideoMuted ? "Unmute Background Audio" : "Mute Background Audio"}
+                >
+                  {heroVideoMuted ? (
+                    <VolumeX className="w-4.5 h-4.5 text-slate-500" />
+                  ) : (
+                    <Volume2 className="w-4.5 h-4.5 text-cyan-600" />
+                  )}
+                </button>
               </div>
             </section>
 
@@ -1471,20 +1503,31 @@ export default function App() {
                     <p className="text-[10px] font-mono text-slate-400 uppercase mb-3">FOLLOW MACARENA'S STYLING DIARIES</p>
                     <div className="flex gap-2">
                       <a 
-                        href="https://instagram.com" 
+                        href="https://www.instagram.com/macarenamantillas" 
                         target="_blank" 
                         rel="noreferrer"
                         className="w-10 h-10 rounded-full border border-slate-200 hover:border-pink-300 hover:bg-pink-50 text-slate-600 hover:text-pink-600 flex items-center justify-center transition-all"
+                        title="Instagram"
                       >
                         <Instagram className="w-4.5 h-4.5" />
                       </a>
                       <a 
-                        href="https://twitter.com" 
+                        href="https://x.com/macarenamantill" 
                         target="_blank" 
                         rel="noreferrer"
                         className="w-10 h-10 rounded-full border border-slate-200 hover:border-cyan-300 hover:bg-cyan-50 text-slate-600 hover:text-cyan-600 flex items-center justify-center transition-all"
+                        title="X / Twitter"
                       >
                         <Twitter className="w-4.5 h-4.5" />
+                      </a>
+                      <a 
+                        href="https://substack.com/@macarenamantilla" 
+                        target="_blank" 
+                        rel="noreferrer"
+                        className="w-10 h-10 rounded-full border border-slate-200 hover:border-amber-300 hover:bg-amber-50 text-slate-600 hover:text-amber-700 flex items-center justify-center transition-all"
+                        title="Substack"
+                      >
+                        <BookOpen className="w-4.5 h-4.5" />
                       </a>
                     </div>
                   </div>
@@ -1528,6 +1571,35 @@ export default function App() {
               <p className="text-xs text-slate-400 leading-relaxed">
                 A premium and warm digital sanctuary where writing, acoustic soundscapes, clean beauty, and timeless fashion intertwine gracefully.
               </p>
+              <div className="flex gap-2.5 pt-2">
+                <a 
+                  href="https://www.instagram.com/macarenamantillas" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="w-8 h-8 rounded-full bg-slate-800 hover:bg-pink-900/40 text-slate-400 hover:text-pink-400 flex items-center justify-center transition-all"
+                  title="Instagram"
+                >
+                  <Instagram className="w-4 h-4" />
+                </a>
+                <a 
+                  href="https://x.com/macarenamantill" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="w-8 h-8 rounded-full bg-slate-800 hover:bg-cyan-900/40 text-slate-400 hover:text-cyan-400 flex items-center justify-center transition-all"
+                  title="X / Twitter"
+                >
+                  <Twitter className="w-4 h-4" />
+                </a>
+                <a 
+                  href="https://substack.com/@macarenamantilla" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="w-8 h-8 rounded-full bg-slate-800 hover:bg-amber-900/40 text-slate-400 hover:text-amber-400 flex items-center justify-center transition-all"
+                  title="Substack"
+                >
+                  <BookOpen className="w-4 h-4" />
+                </a>
+              </div>
             </div>
 
             {/* Column 2: Navigation links */}
