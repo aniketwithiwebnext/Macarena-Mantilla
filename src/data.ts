@@ -1,4 +1,6 @@
 import { BlogPost, MusicRelease, FashionLook, BeautyProduct, PricingPlan } from "./types";
+// @ts-ignore
+import ceramideCloudWhipped from "./assets/images/ceramide_cloud_whipped_1783457739385.jpg";
 
 export const BLOG_POSTS: BlogPost[] = [
   {
@@ -113,7 +115,7 @@ export const BEAUTY_PRODUCTS: BeautyProduct[] = [
     rating: 4.9,
     reviewText: "The absolute holy grail of barrier creams. It feels exactly like a whipped cloud, absorbing instantly without any oily residue while leaving a gorgeous, healthy, velvety canvas for makeup.",
     affiliateLink: "#",
-    image: "https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&q=80&w=600",
+    image: ceramideCloudWhipped,
     isFavorite: true
   },
   {

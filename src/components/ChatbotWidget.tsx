@@ -9,7 +9,7 @@ export default function ChatbotWidget() {
     {
       id: "welcome",
       role: "model",
-      content: "Hello, darling! ✨ I'm Macarena's brand companion. Ask me anything about her latest acoustic tracks, fashion lookbooks, poetry files, beauty routines, or how to join our Premium Muse community!",
+      content: "Welcome Girlies! ✨ I'm Macarena's brand companion. Ask me anything about her poetry journals, creative writing guides, acoustic demos, beauty secrets, or how to join our feminine writing circle!",
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);

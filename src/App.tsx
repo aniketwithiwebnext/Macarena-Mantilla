@@ -10,6 +10,8 @@ import {
 
 import ThreeCanvas from "./components/ThreeCanvas";
 import ChatbotWidget from "./components/ChatbotWidget";
+// @ts-ignore
+import macarenaGraduation from "./assets/images/macarena_graduation_1783457542849.jpg";
 import { BLOG_POSTS, MUSIC_RELEASES, BEAUTY_PRODUCTS, FASHION_LOOKS, PRICING_PLANS } from "./data";
 import { BlogPost, MusicRelease, FashionLook, BeautyProduct } from "./types";
 import { playAmbientSynth, stopAmbientSynth } from "./utils/audio";
@@ -184,7 +186,7 @@ export default function App() {
               Macarena Mantilla
             </span>
             <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-slate-500 font-semibold">
-              Creative Influencer
+              Content Creator
             </span>
           </button>
 
@@ -304,7 +306,7 @@ export default function App() {
                   </h1>
 
                   <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-xl text-center">
-                    Welcome, darling. I am Macarena Mantilla. I believe writing, song, beauty, and textile are interconnected forms of personal storytelling. Here, we build an inspiring community of dreamers exploring slow art and visual harmony.
+                    Welcome Girlies! I am Macarena Mantilla. I believe writing, poetry, and storytelling are powerful vessels of self-reflection and connection. Here, we cultivate an inspiring sanctuary for women to explore journaling, slow literature, and creative sisterhood.
                   </p>
 
                   {/* CTA Buttons */}
@@ -377,8 +379,8 @@ export default function App() {
             <section className="py-16 bg-cream border-t border-slate-100">
               <div className="max-w-7xl mx-auto px-6">
                 <div className="text-center max-w-xl mx-auto mb-14 space-y-3">
-                  <h2 className="font-serif text-3xl font-bold tracking-tight">Four Paths of One Creative Expression</h2>
-                  <p className="text-xs font-mono uppercase tracking-[0.25em] text-slate-400">writing, music, beauty, and fashion</p>
+                  <h2 className="font-serif text-3xl font-bold tracking-tight">Curation, Prose & Creative Expression for Women</h2>
+                  <p className="text-xs font-mono uppercase tracking-[0.25em] text-slate-400">centered in writing, storytelling, and soft living</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -392,7 +394,7 @@ export default function App() {
                     </div>
                     <h3 className="font-serif text-lg font-bold mb-2">Ethereal Prose</h3>
                     <p className="text-xs text-slate-500 leading-relaxed">
-                      Poetry, slow reflections, and creative essays detailing the quiet corners of daily life.
+                      Poetry, reflective journaling, and empowering essays tailored for the modern, creative woman.
                     </p>
                     <span className="inline-flex items-center gap-1 text-[11px] font-mono text-cyan-800 mt-4 uppercase tracking-wider font-semibold">
                       Read Essays <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -464,9 +466,9 @@ export default function App() {
                 <div className="relative p-2 border-2 border-dashed border-baby-blue rounded-[32px] max-w-md w-full">
                   <div className="overflow-hidden rounded-[24px] aspect-[4/5] bg-slate-100 shadow-lg">
                     <img 
-                      src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=600" 
+                      src={macarenaGraduation} 
                       alt="Macarena Mantilla Profile" 
-                      className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                      className="w-full h-full object-cover hover:scale-[1.02] transition-all duration-700"
                       referrerPolicy="no-referrer"
                     />
                   </div>
