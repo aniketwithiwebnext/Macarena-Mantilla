@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-pastel-blue: #e3f2fd;
+  --color-pastel-teal: #e0f2f1;
+  --color-pastel-pink: #fdf2f8;
+  --color-baby-blue: #5dade2;
+  --color-baby-teal: #a8dadc;
+  --color-cream: #f9fbfd;
+  --color-charcoal: #1a2a33;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    color: var(--color-charcoal);
+    background-color: var(--color-cream);
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f9fbfd;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.glass-dark {
+  background: rgba(26, 42, 51, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Custom animated gradient backgrounds */
+.animated-gradient {
+  background: linear-gradient(-45deg, #e3f2fd, #e0f2f1, #fdf2f8, #f9fbfd);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Warm Organic / Cultural Theme Overrides */
+html, body {
+  color: #1a2a33 !important;
+  background-color: #f9fbfd !important;
+}
+
+/* Globally map body paragraphs to the theme's soft slate-blue text color */
+p, .text-slate-600, .text-gray-600 {
+  color: #546e7a !important;
+}
+
+/* Map subheadings to the theme's blue-gray details color */
+.text-slate-500, .text-slate-400, .text-gray-500, .text-gray-400 {
+  color: #8eb6cc !important;
+}
+
+/* Main title text / deep charcoal slate */
+.text-charcoal, h1, h2, h3, h4, h5, h6 {
+  color: #1a2a33 !important;
+}
+
+/* Highlight / baby-blue accents */
+.text-cyan-800, .text-cyan-700, .text-cyan-600, .text-teal-700, .text-teal-600 {
+  color: #5dade2 !important;
+}
+
+/* Action button background overrides to match deep charcoal brand style */
+.bg-cyan-800, .bg-cyan-700, .bg-cyan-600, .bg-charcoal {
+  background-color: #1a2a33 !important;
+}
+
+.bg-cyan-800:hover, .bg-cyan-700:hover, .bg-cyan-600:hover, .bg-charcoal:hover {
+  background-color: #2c3e50 !important;
+  opacity: 0.95;
+}
+
+/* Secondary interactive text or active elements */
+.text-teal-800, .text-teal-900 {
+  color: #457b9d !important;
+}
+
+/* Soft borders using the design's baby-teal border-color */
+.border-baby-teal, .border-slate-100, .border-slate-200, .border-gray-100, .border-gray-200 {
+  border-color: rgba(168, 218, 220, 0.4) !important;
+}
+
+/* Pastel backgrounds */
+.bg-pastel-blue {
+  background-color: #e3f2fd !important;
+}
+
+.bg-pastel-teal {
+  background-color: #e0f2f1 !important;
+}
+
+/* Clean transition curves for smooth organic responses */
+button, a, input, select, textarea {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
