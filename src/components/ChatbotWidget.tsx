@@ -9,7 +9,7 @@ export default function ChatbotWidget() {
     {
       id: "welcome",
       role: "model",
-      content: "Welcome Girlies! ✨ I'm Macarena's brand companion. Ask me anything about her poetry journals, creative writing guides, acoustic demos, beauty secrets, or how to join our feminine writing circle!",
+      content: "Welcome Girlies & friends! ✨ I'm Macarena's brand companion. Ask me anything about her poetry journals, creative writing guides, our new Men's Mental Health series, acoustic demos, or joining our inclusive writing circle!",
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
@@ -102,17 +102,17 @@ export default function ChatbotWidget() {
             id="chatbot-window"
           >
             {/* Header */}
-            <div className="p-4 bg-gradient-to-r from-pastel-blue via-pastel-pink to-pastel-teal border-b border-white/50 flex items-center justify-between">
+            <div className="p-4 bg-gradient-to-r from-pastel-purple via-pastel-pink to-lavender border-b border-white/50 flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="relative">
-                  <div className="w-10 h-10 rounded-full bg-baby-teal border border-white flex items-center justify-center font-serif text-charcoal font-medium text-sm">
+                  <div className="w-10 h-10 rounded-full bg-lavender border border-white flex items-center justify-center font-serif text-brand-purple font-bold text-sm">
                     MM
                   </div>
-                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-teal-400 border-2 border-white rounded-full animate-pulse" />
+                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-brand-pink border-2 border-white rounded-full animate-pulse" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-sm font-semibold tracking-wide text-charcoal flex items-center gap-1">
-                    Macarena's Assistant <Sparkles className="w-3 h-3 text-cyan-700" />
+                  <h3 className="font-serif text-sm font-bold tracking-wide text-charcoal flex items-center gap-1">
+                    Macarena's Assistant <Sparkles className="w-3 h-3 text-brand-purple" />
                   </h3>
                   <p className="text-[10px] text-slate-500 font-mono">Curator of Aesthetic</p>
                 </div>
@@ -140,14 +140,14 @@ export default function ChatbotWidget() {
                   <div
                     className={`max-w-[82%] p-3.5 rounded-2xl text-xs leading-relaxed shadow-sm ${
                       msg.role === "user"
-                        ? "bg-slate-800 text-white rounded-tr-none"
+                        ? "bg-gradient-to-r from-brand-purple to-brand-pink text-white rounded-tr-none font-medium"
                         : "bg-white/80 text-charcoal rounded-tl-none border border-white/50"
                     }`}
                   >
                     <p className="whitespace-pre-line">{msg.content}</p>
                     <span
                       className={`block text-[9px] mt-1.5 ${
-                        msg.role === "user" ? "text-slate-300 text-right" : "text-slate-400 text-left font-mono"
+                        msg.role === "user" ? "text-slate-100 text-right font-mono" : "text-slate-400 text-left font-mono"
                       }`}
                     >
                       {msg.timestamp}
@@ -159,9 +159,9 @@ export default function ChatbotWidget() {
               {isTyping && (
                 <div className="flex justify-start">
                   <div className="bg-white/80 border border-white/50 p-3.5 rounded-2xl rounded-tl-none shadow-sm flex items-center space-x-1">
-                    <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                    <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                    <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                    <span className="w-1.5 h-1.5 bg-brand-purple rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                    <span className="w-1.5 h-1.5 bg-brand-purple rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                    <span className="w-1.5 h-1.5 bg-brand-purple rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
                   </div>
                 </div>
               )}
@@ -174,7 +174,7 @@ export default function ChatbotWidget() {
                   <button
                     key={i}
                     onClick={() => handleSend(prompt)}
-                    className="text-[10px] text-slate-700 hover:text-charcoal bg-white/70 hover:bg-white border border-white/60 rounded-full px-2.5 py-1 transition-all shadow-sm hover:shadow"
+                    className="text-[10px] text-slate-700 hover:text-brand-purple bg-white/70 hover:bg-lavender border border-white/60 rounded-full px-2.5 py-1 transition-all shadow-sm hover:shadow"
                   >
                     {prompt}
                   </button>
@@ -192,12 +192,12 @@ export default function ChatbotWidget() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Type a creative message..."
-                className="flex-1 bg-white/90 border border-white/60 rounded-full px-4 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal placeholder-slate-400 text-charcoal shadow-inner"
+                className="flex-1 bg-white/90 border border-white/60 rounded-full px-4 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-brand-purple/50 placeholder-slate-400 text-charcoal shadow-inner"
               />
               <button
                 type="submit"
                 disabled={!inputValue.trim() || isTyping}
-                className="p-2 rounded-full bg-slate-800 text-white hover:bg-slate-700 active:scale-95 disabled:opacity-40 disabled:scale-100 transition-all shadow"
+                className="p-2 rounded-full bg-gradient-to-r from-brand-purple to-brand-pink text-white hover:from-violet-accent hover:to-berry-pink active:scale-95 disabled:opacity-40 disabled:scale-100 transition-all shadow"
                 aria-label="Send Message"
               >
                 <Send className="w-3.5 h-3.5" />
@@ -212,7 +212,7 @@ export default function ChatbotWidget() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="p-4 rounded-full shadow-lg glass pointer-events-auto border border-white/60 text-charcoal hover:text-slate-800 flex items-center justify-center cursor-pointer transition-shadow"
+        className="p-4 rounded-full shadow-lg bg-gradient-to-r from-brand-purple to-brand-pink text-white hover:from-violet-accent hover:to-berry-pink pointer-events-auto border border-white/30 flex items-center justify-center cursor-pointer transition-shadow"
         style={{
           boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03)"
         }}

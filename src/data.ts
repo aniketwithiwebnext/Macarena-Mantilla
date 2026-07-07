@@ -59,6 +59,17 @@ export const BLOG_POSTS: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=800",
     tags: ["Slow Living", "Visual Diary", "Inspiration"],
     content: "There is immense magic in a slow morning when the rest of the world is still asleep. A single shaft of light hitting an old paperback, the gentle steam curling from a cup of chamomile tea, or the soft rustle of linen curtains. This lifestyle log is my gentle reminder that creativity does not require grand travel or intense experiences; sometimes, the best stories are written on a simple wooden desk on a rainy Sunday morning. Here are six snapshots from my visual diary, alongside short prose about finding peace in stillness."
+  },
+  {
+    id: "blog-6",
+    title: "Unmasking Vulnerability: Supporting Men's Mental Health in the Arts",
+    summary: "Reflecting on the unique emotional challenges faced by men, the power of artistic outlet, and how we can foster supportive, inclusive communities.",
+    category: "Writing",
+    date: "May 15, 2026",
+    readTime: "5 min read",
+    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=800",
+    tags: ["Mental Health", "Vulnerability", "Mindfulness"],
+    content: "For a long time, conversations around men's mental health have been quiet, often shrouded in a culture of stoicism that values silence over vulnerability. In the creative arts and writing, we have a unique opportunity to change this narrative. Journaling, storytelling, and poetic expression are not gendered practices—they are human lifelines. Giving men the safe, judgment-free space to voice their anxieties, imposter syndrome, and emotional struggles is essential. Today, we delve into how we can practice active listening, advocate for mental health resources, and use mindful writing as a supportive tool for the men in our lives and creative communities."
   }
 ];
 

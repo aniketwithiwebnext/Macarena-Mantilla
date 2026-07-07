@@ -152,7 +152,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-cream text-charcoal flex flex-col selection:bg-baby-teal selection:text-teal-900 overflow-x-hidden relative">
+    <div className="min-h-screen bg-cream text-charcoal flex flex-col selection:bg-soft-pink selection:text-brand-pink overflow-x-hidden relative">
       {/* Premium Banner */}
       <AnimatePresence>
         {!isPremiumUser && (
@@ -160,13 +160,13 @@ export default function App() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="bg-gradient-to-r from-pastel-blue via-pastel-pink to-pastel-teal text-center py-2 px-4 text-xs font-medium tracking-wide flex items-center justify-center gap-2 border-b border-white/40"
+            className="bg-gradient-to-r from-pastel-purple via-pastel-pink via-lavender to-pastel-pink text-center py-2 px-4 text-xs font-medium tracking-wide flex items-center justify-center gap-2 border-b border-white/40 text-brand-purple"
           >
-            <Sparkles className="w-3.5 h-3.5 text-cyan-700 animate-spin" style={{ animationDuration: '6s' }} />
-            <span>Discover premium poetry, unreleased music demos, & fashion diaries.</span>
+            <Sparkles className="w-3.5 h-3.5 text-brand-pink animate-spin" style={{ animationDuration: '6s' }} />
+            <span className="font-semibold">Discover premium poetry, unreleased music demos, & fashion diaries.</span>
             <button 
               onClick={() => navigateTo("premium")} 
-              className="underline hover:text-cyan-800 font-semibold"
+              className="underline text-brand-purple hover:text-violet-accent font-bold"
             >
               Unlock Now
             </button>
@@ -182,10 +182,10 @@ export default function App() {
             onClick={() => navigateTo("home")} 
             className="flex flex-col items-start text-left cursor-pointer group"
           >
-            <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-charcoal group-hover:text-slate-700 transition-colors">
+            <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-charcoal group-hover:text-brand-purple transition-colors">
               Macarena Mantilla
             </span>
-            <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-slate-500 font-semibold">
+            <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-brand-purple/70 font-semibold">
               Content Creator
             </span>
           </button>
@@ -196,15 +196,15 @@ export default function App() {
               <button
                 key={tab}
                 onClick={() => navigateTo(tab)}
-                className={`relative py-2 px-1 hover:text-slate-500 transition-colors ${
-                  currentTab === tab ? "text-cyan-800 font-semibold" : "text-slate-600"
+                className={`relative py-2 px-1 hover:text-brand-purple transition-colors ${
+                  currentTab === tab ? "text-brand-purple font-bold" : "text-slate-600"
                 }`}
               >
                 {tab}
                 {currentTab === tab && (
                   <motion.div 
                     layoutId="activeTabUnderline" 
-                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-700" 
+                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-purple" 
                   />
                 )}
               </button>
@@ -250,8 +250,10 @@ export default function App() {
                 <button
                   key={tab}
                   onClick={() => navigateTo(tab)}
-                  className={`text-left p-3 rounded-2xl text-xs font-semibold tracking-widest uppercase transition-colors ${
-                    currentTab === tab ? "bg-pastel-blue text-cyan-800 border border-baby-blue/40" : "bg-white/40 hover:bg-slate-50 text-slate-700"
+                  className={`text-left p-3 rounded-2xl text-xs font-semibold tracking-widest uppercase transition-all border ${
+                    currentTab === tab 
+                      ? "bg-gradient-to-r from-brand-purple to-brand-pink text-white border-transparent font-bold shadow-md" 
+                      : "bg-white hover:bg-slate-50 text-slate-700 border-slate-100 shadow-sm"
                   }`}
                 >
                   {tab}
@@ -261,7 +263,7 @@ export default function App() {
             <div className="pt-4 border-t border-slate-100 flex flex-col gap-3">
               <button 
                 onClick={() => navigateTo("premium")}
-                className="w-full text-center text-xs uppercase tracking-widest bg-charcoal text-white py-3.5 rounded-2xl font-semibold shadow hover:bg-slate-800 transition-colors"
+                className="w-full text-center text-xs uppercase tracking-widest bg-gradient-to-r from-brand-purple to-brand-pink text-white py-3.5 rounded-2xl font-bold shadow-md hover:shadow-lg transition-all"
               >
                 {isPremiumUser ? "✓ Premium Active" : "Unlock Premium Member Access"}
               </button>
@@ -276,7 +278,7 @@ export default function App() {
         {currentTab === "home" && (
           <div id="view-home">
             {/* Hero Section */}
-            <section className="relative overflow-hidden py-10 md:py-20 lg:py-24 bg-gradient-to-b from-pastel-blue/60 via-cream to-cream">
+            <section className="relative overflow-hidden py-10 md:py-20 lg:py-24 bg-gradient-to-b from-pastel-purple/50 via-pastel-pink/30 via-cream to-cream">
               {/* Warm organic textured background video */}
               <div className="absolute inset-0 z-0 pointer-events-none select-none">
                 <video 
@@ -288,44 +290,44 @@ export default function App() {
                   playsInline
                   className="w-full h-full object-cover opacity-60 filter sepia-[5%]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-pastel-blue/10 via-cream/40 to-cream" />
+                <div className="absolute inset-0 bg-gradient-to-b from-pastel-purple/15 via-pastel-pink/10 to-cream" />
               </div>
 
               <div className="relative z-10 max-w-4xl mx-auto px-6 text-center flex flex-col items-center justify-center">
                 {/* Hero Content */}
                 <div className="space-y-8 text-center flex flex-col items-center">
-                  <div className="inline-flex items-center space-x-2 bg-white/80 border border-white px-3 py-1.5 rounded-full shadow-sm">
-                    <Sparkles className="w-3.5 h-3.5 text-cyan-600" />
-                    <span className="text-[10px] uppercase tracking-wider font-mono text-slate-600 font-semibold">
+                  <div className="inline-flex items-center space-x-2 bg-pink-50/85 border border-pink-100 px-3 py-1.5 rounded-full shadow-sm">
+                    <Sparkles className="w-3.5 h-3.5 text-brand-purple" />
+                    <span className="text-[10px] uppercase tracking-wider font-mono text-brand-purple font-bold">
                       Writing, Music, Beauty & Fashion
                     </span>
                   </div>
 
                   <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-charcoal leading-[1.1] max-w-2xl">
-                    Curating the quiet <span className="text-cyan-800 italic">poetry</span> of everyday life.
+                    Curating the quiet <span className="text-brand-purple font-semibold italic">poetry</span> of everyday life.
                   </h1>
 
                   <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-xl text-center">
-                    Welcome Girlies! I am Macarena Mantilla. I believe writing, poetry, and storytelling are powerful vessels of self-reflection and connection. Here, we cultivate an inspiring sanctuary for women to explore journaling, slow literature, and creative sisterhood.
+                    Welcome Girlies and friends of all paths! I am Macarena Mantilla. I believe writing, poetry, and storytelling are powerful vessels of self-reflection and mental well-being. Here, we cultivate an inspiring, gender-neutral sanctuary for journaling, slow literature, and healing—including a dedicated space supporting men's mental health, because vulnerability is a strength that belongs to everyone.
                   </p>
 
                   {/* CTA Buttons */}
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
                     <button 
                        onClick={() => navigateTo("blog")}
-                      className="bg-charcoal text-white hover:bg-slate-800 text-xs uppercase tracking-widest px-8 py-4 rounded-full font-semibold transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 w-full sm:w-auto"
+                      className="bg-gradient-to-r from-brand-purple to-brand-pink text-white hover:from-violet-accent hover:to-berry-pink text-xs uppercase tracking-widest px-8 py-4 rounded-full font-semibold transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 w-full sm:w-auto"
                     >
                       Explore the Blog <ChevronRight className="w-4 h-4" />
                     </button>
                     <button 
                        onClick={() => navigateTo("premium")}
-                      className="glass text-charcoal hover:bg-white text-xs uppercase tracking-widest px-8 py-4 rounded-full font-semibold transition-all border border-slate-300 shadow-sm flex items-center justify-center gap-2 w-full sm:w-auto"
+                      className="glass text-charcoal hover:text-brand-purple hover:border-soft-purple hover:bg-lavender text-xs uppercase tracking-widest px-8 py-4 rounded-full font-semibold transition-all border border-slate-300 shadow-sm flex items-center justify-center gap-2 w-full sm:w-auto"
                     >
                       Join Premium
                     </button>
                     <button 
                       onClick={() => navigateTo("contact")}
-                      className="text-slate-600 hover:text-charcoal text-xs uppercase tracking-widest font-semibold px-4 py-2 transition-colors"
+                      className="text-slate-600 hover:text-brand-purple text-xs uppercase tracking-widest font-semibold px-4 py-2 transition-colors"
                     >
                       Contact
                     </button>
@@ -341,17 +343,17 @@ export default function App() {
                         value={newsletterEmail}
                         onChange={(e) => setNewsletterEmail(e.target.value)}
                         placeholder="your.email@example.com" 
-                        className="flex-grow bg-white border border-slate-300 rounded-full px-4 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal"
+                        className="flex-grow bg-white border border-slate-300 rounded-full px-4 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-soft-purple text-charcoal"
                       />
                       <button 
                         type="submit"
-                        className="bg-cyan-800 text-white hover:bg-cyan-900 rounded-full px-6 py-2 text-xs font-semibold uppercase tracking-wider transition-colors"
+                        className="bg-brand-purple text-white hover:bg-violet-accent rounded-full px-6 py-2 text-xs font-semibold uppercase tracking-wider transition-colors shadow"
                       >
                         Subscribe
                       </button>
                     </form>
                     {newsletterSuccess && (
-                      <p className="text-[11px] text-teal-700 font-medium mt-2 flex items-center gap-1">
+                      <p className="text-[11px] text-brand-purple font-medium mt-2 flex items-center gap-1">
                         <CheckCircle2 className="w-3.5 h-3.5" /> Welcome to our inner circle, beautiful! Check your inbox soon.
                       </p>
                     )}
@@ -379,24 +381,24 @@ export default function App() {
             <section className="py-16 bg-cream border-t border-slate-100">
               <div className="max-w-7xl mx-auto px-6">
                 <div className="text-center max-w-xl mx-auto mb-14 space-y-3">
-                  <h2 className="font-serif text-3xl font-bold tracking-tight">Curation, Prose & Creative Expression for Women</h2>
-                  <p className="text-xs font-mono uppercase tracking-[0.25em] text-slate-400">centered in writing, storytelling, and soft living</p>
+                  <h2 className="font-serif text-3xl font-bold tracking-tight">Curation, Prose & Creative Expression</h2>
+                  <p className="text-xs font-mono uppercase tracking-[0.25em] text-slate-400">inclusive writing, storytelling, and mental wellness for all</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {/* Card 1: Writing */}
                   <div 
                     onClick={() => navigateTo("blog")}
-                    className="p-8 rounded-3xl bg-white border border-slate-100 hover:border-baby-blue transition-all group cursor-pointer shadow-sm hover:shadow"
+                    className="p-8 rounded-3xl bg-white border border-slate-100 hover:border-soft-purple transition-all group cursor-pointer shadow-sm hover:shadow"
                   >
-                    <div className="w-12 h-12 rounded-2xl bg-pastel-blue flex items-center justify-center text-cyan-800 mb-6 group-hover:scale-110 transition-transform">
+                    <div className="w-12 h-12 rounded-2xl bg-lavender flex items-center justify-center text-brand-purple mb-6 group-hover:scale-110 transition-transform">
                       <BookOpen className="w-5 h-5" />
                     </div>
                     <h3 className="font-serif text-lg font-bold mb-2">Ethereal Prose</h3>
                     <p className="text-xs text-slate-500 leading-relaxed">
-                      Poetry, reflective journaling, and empowering essays tailored for the modern, creative woman.
+                      Poetry, reflective journaling, and empowering essays tailored for creative souls, celebrating mental wellness and shared journeys.
                     </p>
-                    <span className="inline-flex items-center gap-1 text-[11px] font-mono text-cyan-800 mt-4 uppercase tracking-wider font-semibold">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-mono text-brand-purple mt-4 uppercase tracking-wider font-bold">
                       Read Essays <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </div>
@@ -404,16 +406,16 @@ export default function App() {
                   {/* Card 2: Music */}
                   <div 
                     onClick={() => navigateTo("music")}
-                    className="p-8 rounded-3xl bg-white border border-slate-100 hover:border-baby-teal transition-all group cursor-pointer shadow-sm hover:shadow"
+                    className="p-8 rounded-3xl bg-white border border-slate-100 hover:border-soft-pink transition-all group cursor-pointer shadow-sm hover:shadow"
                   >
-                    <div className="w-12 h-12 rounded-2xl bg-pastel-teal flex items-center justify-center text-teal-800 mb-6 group-hover:scale-110 transition-transform">
+                    <div className="w-12 h-12 rounded-2xl bg-pastel-pink flex items-center justify-center text-brand-pink mb-6 group-hover:scale-110 transition-transform">
                       <Music className="w-5 h-5" />
                     </div>
                     <h3 className="font-serif text-lg font-bold mb-2">Pastel Soundscapes</h3>
                     <p className="text-xs text-slate-500 leading-relaxed">
                       Dreamy acoustic melodies, organic instrumentals, and synesthetic pop designed to soothe.
                     </p>
-                    <span className="inline-flex items-center gap-1 text-[11px] font-mono text-teal-800 mt-4 uppercase tracking-wider font-semibold">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-mono text-brand-pink mt-4 uppercase tracking-wider font-bold">
                       Listen Now <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </div>
@@ -421,16 +423,16 @@ export default function App() {
                   {/* Card 3: Beauty */}
                   <div 
                     onClick={() => navigateTo("beauty")}
-                    className="p-8 rounded-3xl bg-white border border-slate-100 hover:border-pink-200 transition-all group cursor-pointer shadow-sm hover:shadow"
+                    className="p-8 rounded-3xl bg-white border border-slate-100 hover:border-brand-pink/30 transition-all group cursor-pointer shadow-sm hover:shadow"
                   >
-                    <div className="w-12 h-12 rounded-2xl bg-pastel-pink flex items-center justify-center text-pink-700 mb-6 group-hover:scale-110 transition-transform">
+                    <div className="w-12 h-12 rounded-2xl bg-soft-pink/30 flex items-center justify-center text-berry-pink mb-6 group-hover:scale-110 transition-transform">
                       <Sparkles className="w-5 h-5" />
                     </div>
                     <h3 className="font-serif text-lg font-bold mb-2">Clean Glow</h3>
                     <p className="text-xs text-slate-500 leading-relaxed">
                       Minimal hydration routines, calming products, and gentle editorial beauty curation.
                     </p>
-                    <span className="inline-flex items-center gap-1 text-[11px] font-mono text-pink-700 mt-4 uppercase tracking-wider font-semibold">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-mono text-berry-pink mt-4 uppercase tracking-wider font-bold">
                       See Routines <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </div>
@@ -438,18 +440,38 @@ export default function App() {
                   {/* Card 4: Fashion */}
                   <div 
                     onClick={() => navigateTo("fashion")}
-                    className="p-8 rounded-3xl bg-white border border-slate-100 hover:border-slate-300 transition-all group cursor-pointer shadow-sm hover:shadow"
+                    className="p-8 rounded-3xl bg-white border border-slate-100 hover:border-soft-purple/60 transition-all group cursor-pointer shadow-sm hover:shadow"
                   >
-                    <div className="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-800 mb-6 group-hover:scale-110 transition-transform">
+                    <div className="w-12 h-12 rounded-2xl bg-soft-purple/30 flex items-center justify-center text-violet-accent mb-6 group-hover:scale-110 transition-transform">
                       <Compass className="w-5 h-5" />
                     </div>
                     <h3 className="font-serif text-lg font-bold mb-2">Sustainable Style</h3>
                     <p className="text-xs text-slate-500 leading-relaxed">
                       Artistic outfit pairing, seasonal style diaries, and finding timeless elegance in vintage fabrics.
                     </p>
-                    <span className="inline-flex items-center gap-1 text-[11px] font-mono text-slate-800 mt-4 uppercase tracking-wider font-semibold">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-mono text-violet-accent mt-4 uppercase tracking-wider font-bold">
                       View Lookbook <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </span>
+                  </div>
+
+                  {/* Highlight Banner: Men's Mental Health Matters */}
+                  <div 
+                    onClick={() => navigateTo("blog")}
+                    className="col-span-1 md:col-span-2 lg:col-span-4 p-8 rounded-3xl bg-gradient-to-r from-slate-950 via-slate-900 to-brand-purple/25 text-white border border-brand-purple/30 hover:border-brand-purple/50 transition-all group cursor-pointer shadow-lg hover:shadow-xl mt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
+                  >
+                    <div className="space-y-3 max-w-2xl text-left">
+                      <div className="inline-flex items-center space-x-2 bg-brand-purple/20 border border-brand-purple/30 px-3 py-1 rounded-full text-[10px] uppercase tracking-wider font-mono text-soft-pink font-bold">
+                        <Sparkles className="w-3 h-3 text-brand-pink" />
+                        <span>Mental Health Matters</span>
+                      </div>
+                      <h3 className="font-serif text-2xl font-bold bg-gradient-to-r from-brand-pink to-brand-purple bg-clip-text text-transparent">Breaking the Silence: Supporting Men's Mental Health</h3>
+                      <p className="text-xs text-slate-300 leading-relaxed">
+                        In our creative sanctuary, we believe well-being knows no boundaries. Discover our dedicated journal series, guided writing prompts, and slow literature crafted specifically to support men's mental health, vulnerability, and mindful living.
+                      </p>
+                    </div>
+                    <button className="bg-gradient-to-r from-brand-purple to-brand-pink hover:from-violet-accent hover:to-berry-pink text-white text-xs uppercase tracking-widest px-6 py-3.5 rounded-full font-bold transition-all shadow-md shrink-0">
+                      Read Mental Health Series
+                    </button>
                   </div>
                 </div>
               </div>
@@ -474,7 +496,7 @@ export default function App() {
                   </div>
                   {/* Floating badge */}
                   <div className="absolute -bottom-5 -right-5 bg-white border border-slate-100 shadow-md p-4 rounded-2xl max-w-[180px] text-left">
-                    <HeartHandshake className="w-5 h-5 text-cyan-700 mb-1" />
+                    <HeartHandshake className="w-5 h-5 text-brand-pink mb-1" />
                     <p className="font-serif text-xs font-bold text-charcoal">Global Community</p>
                     <p className="text-[10px] text-slate-400">Inspiring slow living & soft style.</p>
                   </div>
@@ -483,7 +505,7 @@ export default function App() {
 
               {/* Text side */}
               <div className="lg:col-span-7 space-y-6 text-left">
-                <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-cyan-800 font-bold">Behind the Aesthetic</span>
+                <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-brand-purple font-bold">Behind the Aesthetic</span>
                 <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-charcoal">
                   Storytelling is the thread that binds our style.
                 </h2>
@@ -506,13 +528,13 @@ export default function App() {
                 <div className="pt-6 border-t border-slate-200 grid grid-cols-2 gap-4">
                   <div>
                     <h4 className="font-serif text-sm font-bold text-charcoal flex items-center gap-1.5">
-                      <BookOpen className="w-4 h-4 text-cyan-800" /> Writing & Essays
+                      <BookOpen className="w-4 h-4 text-brand-purple" /> Writing & Essays
                     </h4>
                     <p className="text-[11px] text-slate-500 mt-1">Lyrical reflections on art and life.</p>
                   </div>
                   <div>
                     <h4 className="font-serif text-sm font-bold text-charcoal flex items-center gap-1.5">
-                      <Music className="w-4 h-4 text-teal-800" /> Music Release
+                      <Music className="w-4 h-4 text-brand-pink" /> Music Release
                     </h4>
                     <p className="text-[11px] text-slate-500 mt-1">Dreamy, fingerstyle lo-fi acoustics.</p>
                   </div>
@@ -540,7 +562,7 @@ export default function App() {
             {/* Header / Search bar */}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-6 border-b border-slate-200">
               <div className="text-left space-y-2">
-                <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-cyan-800 font-bold">The Creative Log</span>
+                <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-brand-purple font-bold">The Creative Log</span>
                 <h2 className="font-serif text-3xl font-bold">Essays, Reviews & Journals</h2>
                 <p className="text-xs text-slate-500">Explore thoughts on slow lifestyle, poetry structures, and fashion curations.</p>
               </div>
@@ -553,7 +575,7 @@ export default function App() {
                   value={blogSearch}
                   onChange={(e) => setBlogSearch(e.target.value)}
                   placeholder="Search articles & tags..." 
-                  className="w-full bg-white border border-slate-200 rounded-full pl-10 pr-4 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal shadow-inner"
+                  className="w-full bg-white border border-slate-200 rounded-full pl-10 pr-4 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-soft-purple text-charcoal shadow-inner"
                 />
               </div>
             </div>
@@ -567,7 +589,7 @@ export default function App() {
                     onClick={() => setBlogCategory(cat)}
                     className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-all ${
                       blogCategory === cat 
-                        ? "bg-slate-800 text-white" 
+                        ? "bg-gradient-to-r from-brand-purple to-brand-pink text-white shadow-sm font-bold" 
                         : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50"
                     }`}
                   >
@@ -640,7 +662,7 @@ export default function App() {
                         <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {post.date}</span>
                         <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {post.readTime}</span>
                       </div>
-                      <h3 className="font-serif text-lg font-bold text-charcoal group-hover:text-cyan-800 transition-colors line-clamp-2">
+                      <h3 className="font-serif text-lg font-bold text-charcoal group-hover:text-brand-purple transition-colors line-clamp-2">
                         {post.title}
                       </h3>
                       <p className="text-xs text-slate-500 leading-relaxed line-clamp-3">
@@ -661,8 +683,8 @@ export default function App() {
             </div>
 
             {/* Newsletter Subscription Panel */}
-            <div className="mt-16 bg-gradient-to-r from-pastel-blue via-cream to-pastel-teal p-8 md:p-12 rounded-[32px] border border-white/50 text-center max-w-4xl mx-auto space-y-6">
-              <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-cyan-800 font-bold">Inner Circle Newsletter</span>
+            <div className="mt-16 bg-gradient-to-r from-pastel-purple via-cream via-pastel-pink to-pastel-purple p-8 md:p-12 rounded-[32px] border border-white/50 text-center max-w-4xl mx-auto space-y-6 shadow-sm">
+              <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-brand-purple font-bold">Inner Circle Newsletter</span>
               <h3 className="font-serif text-2xl md:text-3xl font-bold text-charcoal">Subscribe to receive exclusive beauty lists, music releases, & poetry</h3>
               <p className="text-xs text-slate-500 max-w-xl mx-auto leading-relaxed">
                 Join our supportive global community of dreamers. Get raw styling breakdowns, weekend journals, and upcoming audio alerts directly in your inbox.
@@ -765,7 +787,7 @@ export default function App() {
                         ) : (
                           // Real body text
                           <div className="space-y-4 text-slate-700 text-sm md:text-base leading-relaxed">
-                            <p className="font-medium text-slate-900 text-lg border-l-4 border-cyan-800 pl-4 py-1 italic bg-cyan-50/30">
+                            <p className="font-medium text-slate-900 text-lg border-l-4 border-brand-purple pl-4 py-1 italic bg-lavender/30">
                               "{selectedPost.summary}"
                             </p>
                             <p className="whitespace-pre-line">{selectedPost.content}</p>
@@ -774,7 +796,7 @@ export default function App() {
                               <span className="text-xs text-slate-400 italic">Curated by Macarena Mantilla</span>
                               <button 
                                 onClick={() => setSelectedPost(null)}
-                                className="text-xs uppercase tracking-wider font-semibold text-cyan-800 hover:underline"
+                                className="text-xs uppercase tracking-wider font-bold text-brand-purple hover:underline"
                               >
                                 Close Article
                               </button>
@@ -795,7 +817,7 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-6 py-12" id="view-music">
             {/* Header */}
             <div className="text-left space-y-2 mb-12 pb-6 border-b border-slate-200">
-              <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-cyan-800 font-bold">Pastel Soundscapes</span>
+              <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-brand-purple font-bold">Pastel Soundscapes</span>
               <h2 className="font-serif text-3xl font-bold">Acoustic Indie & Dreamy Ambient Pop</h2>
               <p className="text-xs text-slate-500">Listen to delicate fingerstyle loops, spoken poems, and synesthetic vocal tracks.</p>
             </div>
@@ -807,7 +829,7 @@ export default function App() {
                   {/* Subtle decorative vinyl design */}
                   <div className="absolute -top-16 -right-16 w-32 h-32 rounded-full border border-slate-100/80 animate-spin" style={{ animationDuration: "12s" }} />
 
-                  <span className="text-[9px] uppercase tracking-wider font-mono text-cyan-800 font-bold bg-pastel-blue px-2.5 py-1 rounded-full">
+                  <span className="text-[9px] uppercase tracking-wider font-mono text-brand-purple font-bold bg-lavender px-2.5 py-1 rounded-full">
                     Aesthetic Audio Deck
                   </span>
 
@@ -829,11 +851,11 @@ export default function App() {
                       </div>
 
                       {/* Mock waveform indicator playing dynamically! */}
-                      <div className="h-10 flex items-center justify-between gap-1 bg-pastel-blue/40 px-3 py-1.5 rounded-xl border border-baby-blue/20">
+                      <div className="h-10 flex items-center justify-between gap-1 bg-lavender/40 px-3 py-1.5 rounded-xl border border-soft-purple/30">
                         {Array.from({ length: 24 }).map((_, i) => (
                           <span 
                             key={i} 
-                            className={`w-1 rounded-full bg-cyan-700 transition-all ${isAudioPlaying ? "animate-[pulse_1s_infinite_alternate]" : "h-1"}`}
+                            className={`w-1 rounded-full bg-brand-purple transition-all ${isAudioPlaying ? "animate-[pulse_1s_infinite_alternate]" : "h-1"}`}
                             style={{ 
                               height: isAudioPlaying ? `${Math.floor(Math.random() * 26) + 6}px` : "4px",
                               animationDelay: `${i * 50}ms`
@@ -846,7 +868,7 @@ export default function App() {
                       <div className="flex items-center justify-between">
                         <button 
                           onClick={() => handleTogglePlayTrack(playingTrack)}
-                          className="w-14 h-14 rounded-full bg-slate-800 text-white hover:bg-slate-700 flex items-center justify-center shadow-lg active:scale-95 transition-all cursor-pointer"
+                          className="w-14 h-14 rounded-full bg-gradient-to-r from-brand-purple to-brand-pink text-white hover:from-violet-accent hover:to-berry-pink flex items-center justify-center shadow-lg active:scale-95 transition-all cursor-pointer"
                           aria-label="Toggle Play"
                         >
                           {isAudioPlaying ? <Pause className="w-5 h-5 fill-white" /> : <Play className="w-5 h-5 fill-white translate-x-0.5" />}
@@ -854,7 +876,7 @@ export default function App() {
 
                         <div className="text-right">
                           <p className="text-[10px] font-mono text-slate-400 uppercase tracking-widest">Acoustic Audio Active</p>
-                          <p className="text-xs font-mono text-cyan-800 font-semibold">{isAudioPlaying ? "Playing Live..." : "Paused"}</p>
+                          <p className="text-xs font-mono text-brand-purple font-bold">{isAudioPlaying ? "Playing Live..." : "Paused"}</p>
                         </div>
                       </div>
                     </div>
@@ -904,7 +926,7 @@ export default function App() {
                         key={track.id}
                         className={`p-4 rounded-2xl border transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-left ${
                           isActive 
-                            ? "bg-pastel-blue/60 border-baby-blue" 
+                            ? "bg-lavender/60 border-soft-purple shadow-sm" 
                             : "bg-white hover:bg-slate-50/50 border-slate-100"
                         }`}
                       >
@@ -928,7 +950,7 @@ export default function App() {
                                 </span>
                               )}
                             </div>
-                            <h4 className="font-serif text-base font-bold text-charcoal mt-1">{track.title}</h4>
+                            <h4 className={`font-serif text-base font-bold mt-1 ${isActive ? "text-brand-purple" : "text-charcoal"}`}>{track.title}</h4>
                             <p className="text-xs text-slate-400 font-mono mt-0.5">{track.releaseDate} • {track.duration}</p>
                           </div>
                         </div>
@@ -946,7 +968,7 @@ export default function App() {
                               onClick={() => handleTogglePlayTrack(track)}
                               className={`text-xs uppercase tracking-wider font-semibold rounded-full px-5 py-2.5 flex items-center gap-1.5 transition-colors ${
                                 isActive && isAudioPlaying 
-                                  ? "bg-cyan-800 text-white hover:bg-cyan-900" 
+                                  ? "bg-gradient-to-r from-brand-purple to-brand-pink text-white" 
                                   : "bg-slate-100 hover:bg-slate-200 text-slate-800"
                               }`}
                             >
@@ -976,13 +998,13 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-6 py-12" id="view-beauty">
             {/* Header */}
             <div className="text-left space-y-2 mb-10 pb-6 border-b border-slate-200">
-              <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-cyan-800 font-bold">Minimal Pastel Glow</span>
+              <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-brand-purple font-bold">Minimal Pastel Glow</span>
               <h2 className="font-serif text-3xl font-bold">Beauty Reviews & Holy Grails</h2>
               <p className="text-xs text-slate-500">My botanical skincare routines, organic product curations, and clean beauty tutorials.</p>
             </div>
 
             {/* Favorite Counter Ribbon */}
-            <div className="bg-gradient-to-r from-pastel-pink via-cream to-pastel-blue p-4 rounded-2xl border border-pink-100/60 mb-10 text-left flex items-center justify-between">
+            <div className="bg-gradient-to-r from-pastel-pink via-cream to-pastel-purple p-4 rounded-2xl border border-pink-100/60 mb-10 text-left flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="w-9 h-9 rounded-full bg-pink-50 flex items-center justify-center text-pink-600">
                   <Heart className="w-4 h-4 fill-pink-500 text-pink-500 animate-pulse" />
@@ -1064,7 +1086,7 @@ export default function App() {
                 />
               </div>
               <div className="lg:col-span-8 space-y-4">
-                <span className="text-[10px] uppercase tracking-[0.2em] font-mono text-cyan-800 font-bold">Beauty Routine Editorial</span>
+                <span className="text-[10px] uppercase tracking-[0.2em] font-mono text-brand-purple font-bold">Beauty Routine Editorial</span>
                 <h3 className="font-serif text-2xl font-bold">The Slow Glow: A 4-Step Skincare Routine</h3>
                 <p className="text-xs text-slate-500 leading-relaxed">
                   We often confuse abundance with quality. When I simplified my beauty routine to just four botanical steps, my skin's natural moisture barrier repaired itself. Here is the daily sequence I trust:
@@ -1097,7 +1119,7 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-6 py-12" id="view-fashion">
             {/* Header */}
             <div className="text-left space-y-2 mb-10 pb-6 border-b border-slate-200">
-              <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-cyan-800 font-bold">Timeless Silhouettes</span>
+              <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-brand-purple font-bold">Timeless Silhouettes</span>
               <h2 className="font-serif text-3xl font-bold">Outfit Inspiration & Lookbooks</h2>
               <p className="text-xs text-slate-500">Exploring fluid tailoring, vintage textile blends, and minimalist capsule layering.</p>
             </div>
@@ -1110,7 +1132,7 @@ export default function App() {
                   onClick={() => setFashionSeason(season)}
                   className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-all ${
                     fashionSeason === season 
-                      ? "bg-slate-800 text-white" 
+                      ? "bg-gradient-to-r from-brand-purple to-brand-pink text-white shadow-sm font-bold" 
                       : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50"
                   }`}
                 >
@@ -1157,9 +1179,9 @@ export default function App() {
             </div>
 
             {/* Interactive style guide download */}
-            <div className="mt-16 p-8 md:p-12 bg-pastel-teal/40 rounded-[32px] border border-baby-teal/30 text-left flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="mt-16 p-8 md:p-12 bg-lavender/40 rounded-[32px] border border-soft-purple/30 text-left flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="space-y-3 max-w-xl">
-                <span className="text-[10px] uppercase tracking-[0.2em] font-mono text-cyan-800 font-bold">Complimentary Style Resource</span>
+                <span className="text-[10px] uppercase tracking-[0.2em] font-mono text-brand-purple font-bold">Complimentary Style Resource</span>
                 <h3 className="font-serif text-2xl font-bold">Curating Your Capsule: VintageSourcing PDF</h3>
                 <p className="text-xs text-slate-500 leading-relaxed">
                   A high-contrast 25-page editorial directory containing Macarena's secret thrift shop directories worldwide, fabric preservation checklists, and proportion templates.
@@ -1167,7 +1189,7 @@ export default function App() {
               </div>
               <button 
                 onClick={() => alert("Lovely! The Sourcing PDF is being compiled and downloaded (simulated).")}
-                className="whitespace-nowrap bg-charcoal text-white hover:bg-slate-800 text-xs uppercase tracking-widest px-8 py-4 rounded-full font-semibold transition-all shadow hover:shadow-md flex items-center gap-1.5"
+                className="whitespace-nowrap bg-gradient-to-r from-brand-purple to-brand-pink text-white hover:from-violet-accent hover:to-berry-pink text-xs uppercase tracking-widest px-8 py-4 rounded-full font-bold transition-all shadow hover:shadow-md flex items-center gap-1.5"
               >
                 <Download className="w-4 h-4" /> Download Capsule Guide
               </button>
@@ -1180,7 +1202,7 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-6 py-12" id="view-premium">
             {/* Header */}
             <div className="text-center max-w-xl mx-auto space-y-3 mb-16">
-              <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-cyan-800 font-bold">Exclusive Sanctuary</span>
+              <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-brand-purple font-bold">Exclusive Sanctuary</span>
               <h2 className="font-serif text-3xl md:text-4xl font-bold">Join the Creative Muse Community</h2>
               <p className="text-xs text-slate-500">Uncover monthly poetry collections, unreleased tracks, and private lifestyle diaries.</p>
             </div>
@@ -1222,7 +1244,7 @@ export default function App() {
                   }`}
                 >
                   {plan.isPopular && (
-                    <span className="absolute -top-3 left-8 bg-gradient-to-r from-teal-400 to-cyan-500 text-white text-[9px] uppercase tracking-widest font-mono font-bold px-3 py-1 rounded-full shadow-sm">
+                    <span className="absolute -top-3 left-8 bg-gradient-to-r from-violet-accent to-berry-pink text-white text-[9px] uppercase tracking-widest font-mono font-bold px-3 py-1 rounded-full shadow-sm">
                       Most Beloved Tier
                     </span>
                   )}
@@ -1271,25 +1293,25 @@ export default function App() {
             </div>
 
             {/* Exclusive Perks list */}
-            <div className="mt-16 bg-gradient-to-r from-pastel-blue via-cream to-pastel-pink p-8 rounded-[32px] border border-white/50 text-left max-w-4xl mx-auto">
+            <div className="mt-16 bg-gradient-to-r from-pastel-purple via-cream to-pastel-pink p-8 rounded-[32px] border border-white/50 text-left max-w-4xl mx-auto">
               <h3 className="font-serif text-xl font-bold mb-6 text-center">Your Membership Perks at a Glance</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="space-y-2">
-                  <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-cyan-800 shadow-sm">
+                  <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-brand-purple shadow-sm">
                     <BookOpen className="w-4 h-4" />
                   </div>
                   <h4 className="font-serif text-sm font-bold">Unreleased Notebooks</h4>
                   <p className="text-xs text-slate-500">Read unfinished drafts, raw poetry files, and weekly design mood boards.</p>
                 </div>
                 <div className="space-y-2">
-                  <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-teal-800 shadow-sm">
+                  <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-berry-pink shadow-sm">
                     <Music className="w-4 h-4" />
                   </div>
                   <h4 className="font-serif text-sm font-bold">Early Demo Audio</h4>
                   <p className="text-xs text-slate-500">Listen to live-take cassette tapes, chord recordings, and background guide vocals.</p>
                 </div>
                 <div className="space-y-2">
-                  <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-pink-700 shadow-sm">
+                  <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-violet-accent shadow-sm">
                     <Sparkles className="w-4 h-4" />
                   </div>
                   <h4 className="font-serif text-sm font-bold">Private Q&A Support</h4>
@@ -1371,7 +1393,7 @@ export default function App() {
               {/* Left Column: Form */}
               <div className="lg:col-span-7 bg-white border border-slate-100 rounded-3xl p-6 md:p-10 shadow-sm text-left space-y-6">
                 <div className="space-y-2">
-                  <span className="text-[10px] uppercase tracking-[0.2em] font-mono text-cyan-800 font-bold">Collaborations & Inquiries</span>
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-mono text-brand-purple font-bold">Collaborations & Inquiries</span>
                   <h3 className="font-serif text-2xl md:text-3xl font-bold">Send Macarena a Gentle Message</h3>
                   <p className="text-xs text-slate-500 leading-relaxed">
                     Have a collaboration concept, business inquiry, or want to write some guest poetry? Pitch below, and Macarena or her assistant will review it within 48 hours.
@@ -1464,7 +1486,7 @@ export default function App() {
                   
                   <div className="space-y-4">
                     <div className="flex items-center space-x-3.5">
-                      <div className="w-10 h-10 rounded-xl bg-pastel-blue flex items-center justify-center text-cyan-800 shadow-inner">
+                      <div className="w-10 h-10 rounded-xl bg-lavender flex items-center justify-center text-brand-purple shadow-inner">
                         <Mail className="w-4.5 h-4.5" />
                       </div>
                       <div>
@@ -1476,7 +1498,7 @@ export default function App() {
                     </div>
 
                     <div className="flex items-center space-x-3.5">
-                      <div className="w-10 h-10 rounded-xl bg-pastel-teal flex items-center justify-center text-teal-800 shadow-inner">
+                      <div className="w-10 h-10 rounded-xl bg-lavender flex items-center justify-center text-brand-pink shadow-inner">
                         <Phone className="w-4.5 h-4.5" />
                       </div>
                       <div>
@@ -1488,7 +1510,7 @@ export default function App() {
                     </div>
 
                     <div className="flex items-center space-x-3.5">
-                      <div className="w-10 h-10 rounded-xl bg-pastel-pink flex items-center justify-center text-pink-700 shadow-inner">
+                      <div className="w-10 h-10 rounded-xl bg-pastel-pink/50 flex items-center justify-center text-brand-pink shadow-inner">
                         <MapPin className="w-4.5 h-4.5" />
                       </div>
                       <div>
@@ -1569,7 +1591,7 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-left">
             {/* Column 1: Brand statement */}
             <div className="space-y-4">
-              <h3 className="font-serif text-lg font-bold text-white tracking-tight">Macarena Mantilla</h3>
+              <h3 className="font-serif text-lg font-bold bg-gradient-to-r from-brand-pink to-brand-purple bg-clip-text text-transparent tracking-tight">Macarena Mantilla</h3>
               <p className="text-xs text-slate-400 leading-relaxed">
                 A premium and warm digital sanctuary where writing, acoustic soundscapes, clean beauty, and timeless fashion intertwine gracefully.
               </p>
@@ -1606,7 +1628,7 @@ export default function App() {
 
             {/* Column 2: Navigation links */}
             <div className="space-y-3">
-              <h4 className="text-[10px] uppercase font-mono tracking-widest text-slate-200">Site Directory</h4>
+              <h4 className="text-[10px] uppercase font-mono tracking-widest font-bold bg-gradient-to-r from-brand-pink to-brand-purple bg-clip-text text-transparent">Site Directory</h4>
               <ul className="space-y-2 text-xs">
                 {(["home", "about", "blog", "music"] as const).map((tab) => (
                   <li key={tab}>
@@ -1620,7 +1642,7 @@ export default function App() {
 
             {/* Column 3: Navigation links */}
             <div className="space-y-3">
-              <h4 className="text-[10px] uppercase font-mono tracking-widest text-slate-200">Content Channels</h4>
+              <h4 className="text-[10px] uppercase font-mono tracking-widest font-bold bg-gradient-to-r from-brand-pink to-brand-purple bg-clip-text text-transparent">Content Channels</h4>
               <ul className="space-y-2 text-xs">
                 {(["beauty", "fashion", "premium", "contact"] as const).map((tab) => (
                   <li key={tab}>
@@ -1634,13 +1656,10 @@ export default function App() {
 
             {/* Column 4: Legals / Subscription */}
             <div className="space-y-3">
-              <h4 className="text-[10px] uppercase font-mono tracking-widest text-slate-200">Legal Agreements</h4>
+              <h4 className="text-[10px] uppercase font-mono tracking-widest font-bold bg-gradient-to-r from-brand-pink to-brand-purple bg-clip-text text-transparent">Legal Agreements</h4>
               <ul className="space-y-2 text-xs">
                 <li><button onClick={() => alert("Simulated Privacy Policy. Your brand details are securely processed offline.")} className="hover:text-white transition-colors">Privacy Policy</button></li>
                 <li><button onClick={() => alert("Simulated Terms of Service. Crafted lovingly by iWebNext.")} className="hover:text-white transition-colors">Terms of Service</button></li>
-                <li>
-                  <span className="text-[11px] font-mono text-cyan-400 font-semibold block mt-1">Developed by <a href="https://iwebnext.com" target="_blank" rel="noreferrer" className="hover:underline text-cyan-400">iWebNext</a></span>
-                </li>
               </ul>
             </div>
           </div>
@@ -1649,7 +1668,7 @@ export default function App() {
           <div className="pt-8 border-t border-slate-800 text-center text-[11px] text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p>© 2026 Macarena Mantilla. All Rights Reserved.</p>
             <p>
-              Developed by <a href="https://iwebnext.com" target="_blank" rel="noreferrer" className="hover:underline text-cyan-400 font-medium">iWebNext</a>
+              Developed by <a href="https://iwebnext.com" target="_blank" rel="noreferrer" className="hover:underline text-brand-pink font-bold">iWebNext</a>
             </p>
           </div>
         </div>

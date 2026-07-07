@@ -9,6 +9,14 @@
   --color-pastel-blue: #e3f2fd;
   --color-pastel-teal: #e0f2f1;
   --color-pastel-pink: #fdf2f8;
+  --color-pastel-purple: #faf5ff;
+  --color-lavender: #f3e8ff;
+  --color-soft-pink: #fbcfe8;
+  --color-soft-purple: #e9d5ff;
+  --color-brand-pink: #ec4899;
+  --color-brand-purple: #8b5cf6;
+  --color-berry-pink: #db2777;
+  --color-violet-accent: #7c3aed;
   --color-baby-blue: #5dade2;
   --color-baby-teal: #a8dadc;
   --color-cream: #f9fbfd;
@@ -60,9 +68,9 @@
 
 /* Custom animated gradient backgrounds */
 .animated-gradient {
-  background: linear-gradient(-45deg, #e3f2fd, #e0f2f1, #fdf2f8, #f9fbfd);
+  background: linear-gradient(-45deg, #e3f2fd, #f3e8ff, #fdf2f8, #e0f2f1, #f9fbfd);
   background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
+  animation: gradientBG 18s ease infinite;
 }
 
 @keyframes gradientBG {
@@ -88,7 +96,7 @@ p, .text-slate-600, .text-gray-600 {
 }
 
 /* Main title text / deep charcoal slate */
-.text-charcoal, h1, h2, h3, h4, h5, h6 {
+.text-charcoal, h1:not(.text-transparent), h2:not(.text-transparent), h3:not(.text-transparent), h4:not(.text-transparent), h5:not(.text-transparent), h6:not(.text-transparent) {
   color: #1a2a33 !important;
 }
 
