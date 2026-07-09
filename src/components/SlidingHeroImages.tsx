@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -32,22 +32,22 @@ export function SlidingHeroImages() {
     });
   }, []);
 
+  const handleNext = useCallback(() => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev + 1) % HERO_IMAGES.length);
+  }, []);
+
+  const handlePrev = useCallback(() => {
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev - 1 + HERO_IMAGES.length) % HERO_IMAGES.length);
+  }, []);
+
   useEffect(() => {
     const timer = setInterval(() => {
       handleNext();
     }, 5000);
     return () => clearInterval(timer);
-  }, [currentIndex]);
-
-  const handleNext = () => {
-    setDirection(1);
-    setCurrentIndex((prev) => (prev + 1) % HERO_IMAGES.length);
-  };
-
-  const handlePrev = () => {
-    setDirection(-1);
-    setCurrentIndex((prev) => (prev - 1 + HERO_IMAGES.length) % HERO_IMAGES.length);
-  };
+  }, [handleNext, currentIndex]);
 
   // Variants for sliding transition
   const slideVariants = {
