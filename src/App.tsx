@@ -11,6 +11,7 @@ import {
 import ThreeCanvas from "./components/ThreeCanvas";
 import ChatbotWidget from "./components/ChatbotWidget";
 import ParallaxImage from "./components/ParallaxImage";
+import SlidingHeroImages from "./components/SlidingHeroImages";
 // @ts-ignore
 import macarenaGraduation from "./assets/images/macarena_graduation_1783457542849.jpg";
 import { BLOG_POSTS, MUSIC_RELEASES, BEAUTY_PRODUCTS, FASHION_LOOKS, PRICING_PLANS } from "./data";
@@ -53,20 +54,6 @@ export default function App() {
   // Contact Form states
   const [contactForm, setContactForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [contactSubmitted, setContactSubmitted] = useState(false);
-
-  // Hero Video volume/mute control
-  const [heroVideoMuted, setHeroVideoMuted] = useState(true);
-  const heroVideoRef = useRef<HTMLVideoElement>(null);
-
-  const toggleHeroVideoMuted = () => {
-    if (heroVideoRef.current) {
-      const targetMuted = !heroVideoRef.current.muted;
-      heroVideoRef.current.muted = targetMuted;
-      setHeroVideoMuted(targetMuted);
-    } else {
-      setHeroVideoMuted(prev => !prev);
-    }
-  };
 
   // Monitor scroll for scroll-to-top button
   useEffect(() => {
@@ -280,19 +267,8 @@ export default function App() {
           <div id="view-home">
             {/* Hero Section */}
             <section className="relative overflow-hidden py-10 md:py-20 lg:py-24 bg-gradient-to-b from-pastel-purple/50 via-pastel-pink/30 via-cream to-cream">
-              {/* Warm organic textured background video */}
-              <div className="absolute inset-0 z-0 pointer-events-none select-none">
-                <video 
-                  ref={heroVideoRef}
-                  src="https://gjoznmzw2bc0wpip.public.blob.vercel-storage.com/Macarena%20Mantilla.mp4" 
-                  autoPlay
-                  loop
-                  muted={heroVideoMuted}
-                  playsInline
-                  className="w-full h-full object-cover opacity-60 filter sepia-[5%]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-pastel-purple/15 via-pastel-pink/10 to-cream" />
-              </div>
+              {/* Warm organic textured background sliding images */}
+              <SlidingHeroImages />
 
               <div className="relative z-10 max-w-4xl mx-auto px-6 text-center flex flex-col items-center justify-center">
                 {/* Hero Content */}
@@ -308,7 +284,7 @@ export default function App() {
                     Curating the quiet <span className="text-brand-purple font-semibold italic">poetry</span> of everyday life.
                   </h1>
 
-                  <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-xl text-center">
+                  <p className="text-sm md:text-base text-slate-900 font-medium leading-relaxed max-w-xl text-center">
                     Welcome Girlies and friends of all paths! I am Macarena Mantilla. I believe writing, poetry, and storytelling are powerful vessels of self-reflection and mental well-being. Here, we cultivate an inspiring, gender-neutral sanctuary for journaling, slow literature, and healing—including a dedicated space supporting men's mental health, because vulnerability is a strength that belongs to everyone.
                   </p>
 
@@ -360,21 +336,6 @@ export default function App() {
                     )}
                   </div>
                 </div>
-              </div>
-
-              {/* Floating Mute/Unmute Control for background video */}
-              <div className="absolute bottom-4 right-4 z-20">
-                <button
-                  onClick={toggleHeroVideoMuted}
-                  className="w-10 h-10 rounded-full bg-white/80 backdrop-blur border border-slate-200 shadow hover:bg-white hover:scale-105 transition-all flex items-center justify-center text-charcoal"
-                  title={heroVideoMuted ? "Unmute Background Audio" : "Mute Background Audio"}
-                >
-                  {heroVideoMuted ? (
-                    <VolumeX className="w-4.5 h-4.5 text-slate-500" />
-                  ) : (
-                    <Volume2 className="w-4.5 h-4.5 text-cyan-600" />
-                  )}
-                </button>
               </div>
             </section>
 
