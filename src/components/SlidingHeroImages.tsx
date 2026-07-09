@@ -108,7 +108,7 @@ export function SlidingHeroImages() {
         <div className="absolute inset-0 bg-radial-gradient from-transparent to-cream/20" />
 
         {/* Subtle sliding captions and manual navigation indicators in the bottom left */}
-        <div className="absolute bottom-6 left-6 z-20 flex flex-col items-start space-y-2 pointer-events-auto bg-white/70 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-slate-100 shadow-sm max-w-[280px]">
+        <div className="absolute bottom-6 left-6 z-20 hidden sm:flex flex-col items-start space-y-2 pointer-events-auto bg-white/70 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-slate-100 shadow-sm max-w-[280px]">
           <span className="text-[9px] uppercase tracking-wider font-mono text-brand-purple font-bold">
             Active Inspiration
           </span>

@@ -319,7 +319,7 @@ export default function App() {
                     </button>
                     <button 
                       onClick={() => navigateTo("contact")}
-                      className="text-slate-600 hover:text-brand-purple text-xs uppercase tracking-widest font-semibold px-4 py-2 transition-colors"
+                      className="glass text-slate-700 hover:text-brand-purple hover:border-soft-purple hover:bg-lavender text-xs uppercase tracking-widest px-8 py-4 rounded-full font-semibold transition-all border border-slate-300 shadow-sm flex items-center justify-center gap-2 w-full sm:w-auto"
                     >
                       Contact
                     </button>
@@ -339,7 +339,7 @@ export default function App() {
                       />
                       <button 
                         type="submit"
-                        className="bg-brand-purple text-white hover:bg-violet-accent rounded-full px-6 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors shadow min-h-[44px]"
+                        className="bg-purple-600 hover:bg-purple-700 text-white rounded-full px-6 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors shadow min-h-[44px]"
                       >
                         Subscribe
                       </button>
