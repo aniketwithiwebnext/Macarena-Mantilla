@@ -192,7 +192,7 @@ export default function ChatbotWidget() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Type a creative message..."
-                className="flex-1 bg-white/90 border border-white/60 rounded-full px-4 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-brand-purple/50 placeholder-slate-400 text-charcoal shadow-inner"
+                className="flex-1 bg-white/90 border border-white/60 rounded-full px-4 py-2.5 text-base md:text-xs focus:outline-none focus:ring-2 focus:ring-brand-purple/50 placeholder-slate-400 text-charcoal shadow-inner min-h-[40px]"
               />
               <button
                 type="submit"

@@ -30,6 +30,21 @@ export default function App() {
   const [isPremiumUser, setIsPremiumUser] = useState(false);
   const [checkoutPlan, setCheckoutPlan] = useState<string | null>(null);
 
+  // Custom premium responsive toast state
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const showToast = (msg: string) => {
+    setToastMessage(msg);
+  };
+
+  useEffect(() => {
+    if (toastMessage) {
+      const timer = setTimeout(() => {
+        setToastMessage(null);
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [toastMessage]);
+
   // Newsletter state
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [subscribedEmails, setSubscribedEmails] = useState<string[]>([]);
@@ -216,7 +231,7 @@ export default function App() {
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-            className="lg:hidden p-2 rounded-full hover:bg-slate-100 transition-colors text-charcoal"
+            className="lg:hidden p-3 rounded-full hover:bg-slate-100 transition-colors text-charcoal min-w-[44px] min-h-[44px] flex items-center justify-center"
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -238,7 +253,7 @@ export default function App() {
                 <button
                   key={tab}
                   onClick={() => navigateTo(tab)}
-                  className={`text-left p-3 rounded-2xl text-xs font-semibold tracking-widest uppercase transition-all border ${
+                  className={`text-center py-3.5 px-3 rounded-2xl text-xs font-semibold tracking-widest uppercase transition-all border min-h-[44px] ${
                     currentTab === tab 
                       ? "bg-gradient-to-r from-brand-purple to-brand-pink text-white border-transparent font-bold shadow-md" 
                       : "bg-white hover:bg-slate-50 text-slate-700 border-slate-100 shadow-sm"
@@ -320,11 +335,11 @@ export default function App() {
                         value={newsletterEmail}
                         onChange={(e) => setNewsletterEmail(e.target.value)}
                         placeholder="your.email@example.com" 
-                        className="flex-grow bg-white border border-slate-300 rounded-full px-4 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-soft-purple text-charcoal"
+                        className="flex-grow bg-white border border-slate-300 rounded-full px-4 py-2.5 text-base md:text-xs focus:outline-none focus:ring-2 focus:ring-soft-purple text-charcoal min-h-[44px]"
                       />
                       <button 
                         type="submit"
-                        className="bg-brand-purple text-white hover:bg-violet-accent rounded-full px-6 py-2 text-xs font-semibold uppercase tracking-wider transition-colors shadow"
+                        className="bg-brand-purple text-white hover:bg-violet-accent rounded-full px-6 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors shadow min-h-[44px]"
                       >
                         Subscribe
                       </button>
@@ -487,7 +502,7 @@ export default function App() {
                 </div>
 
                 {/* Focus Highlights */}
-                <div className="pt-6 border-t border-slate-200 grid grid-cols-2 gap-4">
+                <div className="pt-6 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <h4 className="font-serif text-sm font-bold text-charcoal flex items-center gap-1.5">
                       <BookOpen className="w-4 h-4 text-brand-purple" /> Writing & Essays
@@ -537,7 +552,7 @@ export default function App() {
                   value={blogSearch}
                   onChange={(e) => setBlogSearch(e.target.value)}
                   placeholder="Search articles & tags..." 
-                  className="w-full bg-white border border-slate-200 rounded-full pl-10 pr-4 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-soft-purple text-charcoal shadow-inner"
+                  className="w-full bg-white border border-slate-200 rounded-full pl-10 pr-4 py-3 md:py-2.5 text-base md:text-xs focus:outline-none focus:ring-2 focus:ring-soft-purple text-charcoal shadow-inner min-h-[44px]"
                 />
               </div>
             </div>
@@ -658,11 +673,11 @@ export default function App() {
                   value={newsletterEmail}
                   onChange={(e) => setNewsletterEmail(e.target.value)}
                   placeholder="your.email@example.com" 
-                  className="flex-grow bg-white border border-slate-300 rounded-full px-5 py-3 text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal"
+                  className="flex-grow bg-white border border-slate-300 rounded-full px-5 py-3.5 md:py-3 text-base md:text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal min-h-[44px]"
                 />
                 <button 
                   type="submit"
-                  className="bg-charcoal text-white hover:bg-slate-800 rounded-full px-7 py-3 text-xs font-semibold uppercase tracking-wider transition-all"
+                  className="bg-charcoal text-white hover:bg-slate-800 rounded-full px-7 py-3.5 md:py-3 text-xs font-semibold uppercase tracking-wider transition-all min-h-[44px]"
                 >
                   Join Us
                 </button>
@@ -1025,7 +1040,7 @@ export default function App() {
                     <div className="p-5 pt-0">
                       <a 
                         href={prod.affiliateLink}
-                        onClick={(e) => { e.preventDefault(); alert("Beautiful! Affiliate link tracked securely (sample integration)."); }}
+                        onClick={(e) => { e.preventDefault(); showToast("Beautiful! Affiliate link tracked securely (sample integration)."); }}
                         className="w-full block text-center text-[10px] uppercase tracking-wider font-semibold bg-slate-800 hover:bg-slate-700 text-white py-2.5 rounded-xl transition-colors"
                       >
                         Shop Holy Grail
@@ -1149,7 +1164,7 @@ export default function App() {
                 </p>
               </div>
               <button 
-                onClick={() => alert("Lovely! The Sourcing PDF is being compiled and downloaded (simulated).")}
+                onClick={() => showToast("Lovely! The Sourcing PDF is being compiled and downloaded (simulated).")}
                 className="whitespace-nowrap bg-gradient-to-r from-brand-purple to-brand-pink text-white hover:from-violet-accent hover:to-berry-pink text-xs uppercase tracking-widest px-8 py-4 rounded-full font-bold transition-all shadow hover:shadow-md flex items-center gap-1.5"
               >
                 <Download className="w-4 h-4" /> Download Capsule Guide
@@ -1235,7 +1250,7 @@ export default function App() {
                     <button 
                       onClick={() => {
                         if (isPremiumUser) {
-                          alert("Your premium test profile is already active, beautiful!");
+                          showToast("Your premium test profile is already active, beautiful!");
                           return;
                         }
                         setCheckoutPlan(plan.name);
@@ -1333,7 +1348,7 @@ export default function App() {
                         onClick={() => {
                           setIsPremiumUser(true);
                           setCheckoutPlan(null);
-                          alert("Hooray! Premium membership authorized successfully! All locked entries are now unlocked.");
+                          showToast("Hooray! Premium membership authorized successfully! All locked entries are now unlocked.");
                         }}
                         className="flex-grow bg-slate-800 hover:bg-slate-700 text-white text-xs uppercase tracking-widest py-3 rounded-full font-semibold"
                       >
@@ -1389,7 +1404,7 @@ export default function App() {
                           value={contactForm.name}
                           onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
                           placeholder="Your lovely name" 
-                          className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-3 text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal"
+                          className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-3.5 md:py-3 text-base md:text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal min-h-[44px]"
                         />
                       </div>
                       <div className="space-y-1.5">
@@ -1400,7 +1415,7 @@ export default function App() {
                           value={contactForm.email}
                           onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
                           placeholder="your.email@example.com" 
-                          className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-3 text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal"
+                          className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-3.5 md:py-3 text-base md:text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal min-h-[44px]"
                         />
                       </div>
                     </div>
@@ -1413,7 +1428,7 @@ export default function App() {
                         value={contactForm.subject}
                         onChange={(e) => setContactForm({ ...contactForm, subject: e.target.value })}
                         placeholder="Collaboration, Poetry feedback, Business inquiry..." 
-                        className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-3 text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal"
+                        className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-3.5 md:py-3 text-base md:text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal min-h-[44px]"
                       />
                     </div>
 
@@ -1425,7 +1440,7 @@ export default function App() {
                         value={contactForm.message}
                         onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
                         placeholder="Write your creative proposal here..." 
-                        className="w-full bg-slate-50/50 border border-slate-200 rounded-2xl p-4 text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal"
+                        className="w-full bg-slate-50/50 border border-slate-200 rounded-2xl p-4 text-base md:text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal"
                       />
                     </div>
 
@@ -1619,8 +1634,8 @@ export default function App() {
             <div className="space-y-3">
               <h4 className="text-[10px] uppercase font-mono tracking-widest font-bold bg-gradient-to-r from-brand-pink to-brand-purple bg-clip-text text-transparent">Legal Agreements</h4>
               <ul className="space-y-2 text-xs">
-                <li><button onClick={() => alert("Simulated Privacy Policy. Your brand details are securely processed offline.")} className="hover:text-white transition-colors">Privacy Policy</button></li>
-                <li><button onClick={() => alert("Simulated Terms of Service. Crafted lovingly by iWebNext.")} className="hover:text-white transition-colors">Terms of Service</button></li>
+                <li><button onClick={() => showToast("Simulated Privacy Policy. Your brand details are securely processed offline.")} className="hover:text-white transition-colors">Privacy Policy</button></li>
+                <li><button onClick={() => showToast("Simulated Terms of Service. Crafted lovingly by iWebNext.")} className="hover:text-white transition-colors">Terms of Service</button></li>
               </ul>
             </div>
           </div>
@@ -1648,11 +1663,32 @@ export default function App() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="fixed bottom-24 right-6 p-3 rounded-full bg-slate-800 text-white hover:bg-slate-700 shadow-lg pointer-events-auto z-40 cursor-pointer active:scale-95 transition-all"
+            className="fixed bottom-24 right-6 w-11 h-11 flex items-center justify-center rounded-full bg-slate-800 text-white hover:bg-slate-700 shadow-lg pointer-events-auto z-40 cursor-pointer active:scale-95 transition-all"
             aria-label="Scroll to Top"
           >
-            <ArrowUp className="w-4 h-4" />
+            <ArrowUp className="w-5 h-5" />
           </motion.button>
+        )}
+      </AnimatePresence>
+
+      {/* TOAST NOTIFICATION OVERLAY */}
+      <AnimatePresence>
+        {toastMessage && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+            className="fixed bottom-6 left-6 md:left-1/2 md:-translate-x-1/2 z-50 bg-slate-900/95 text-white text-xs px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 backdrop-blur border border-white/10 max-w-[90vw] md:max-w-md pointer-events-auto font-sans"
+          >
+            <Sparkles className="w-4 h-4 text-brand-pink shrink-0" />
+            <p className="flex-grow text-left leading-relaxed">{toastMessage}</p>
+            <button 
+              onClick={() => setToastMessage(null)} 
+              className="text-slate-400 hover:text-white font-bold px-1.5 py-1 min-w-[32px]"
+            >
+              ✕
+            </button>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>
