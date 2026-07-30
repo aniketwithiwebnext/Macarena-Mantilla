@@ -61,3 +61,21 @@ export interface ChatMessage {
   content: string;
   timestamp: string;
 }
+
+export interface SiteSettings {
+  heroTitle: string;
+  heroBio: string;
+  aboutText1: string;
+  aboutText2: string;
+  contactEmail: string;
+  contactPhone: string;
+}
+
+export interface ContactMessage {
+  id: string;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  date: string;
+}

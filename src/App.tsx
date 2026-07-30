@@ -5,22 +5,23 @@ import {
   ChevronRight, Menu, X, Search, Lock, Check, CheckCircle2, 
   MapPin, Volume2, VolumeX, Pause, Play, Download, User, 
   Calendar, Clock, ArrowUpRight, Compass, Eye, ShieldAlert,
-  Send, Instagram, Twitter, HeartHandshake, Scissors
+  Send, Instagram, Twitter, HeartHandshake, Scissors, ShieldCheck
 } from "lucide-react";
 
 import ThreeCanvas from "./components/ThreeCanvas";
 import ChatbotWidget from "./components/ChatbotWidget";
 import ParallaxImage from "./components/ParallaxImage";
 import SlidingHeroImages from "./components/SlidingHeroImages";
+import AdminPanel from "./components/AdminPanel";
 // @ts-ignore
 import macarenaGraduation from "./assets/images/macarena_graduation_1783457542849.jpg";
 import { BLOG_POSTS, MUSIC_RELEASES, BEAUTY_PRODUCTS, FASHION_LOOKS, PRICING_PLANS } from "./data";
-import { BlogPost, MusicRelease, FashionLook, BeautyProduct } from "./types";
+import { BlogPost, MusicRelease, FashionLook, BeautyProduct, SiteSettings, ContactMessage } from "./types";
 import { playAmbientSynth, stopAmbientSynth } from "./utils/audio";
 
 export default function App() {
   // Navigation
-  const [currentTab, setCurrentTab] = useState<"home" | "about" | "blog" | "music" | "beauty" | "fashion" | "premium" | "contact">("home");
+  const [currentTab, setCurrentTab] = useState<"home" | "about" | "blog" | "music" | "beauty" | "fashion" | "premium" | "contact" | "admin">("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Scroll to top visibility
@@ -29,6 +30,196 @@ export default function App() {
   // Membership state (allows testing premium content live!)
   const [isPremiumUser, setIsPremiumUser] = useState(false);
   const [checkoutPlan, setCheckoutPlan] = useState<string | null>(null);
+
+  // Admin Login State
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState<boolean>(() => {
+    return localStorage.getItem("macarena_admin_auth") === "true";
+  });
+
+  // Dynamic Content Datasets with LocalStorage Persistence
+  const [blogs, setBlogs] = useState<BlogPost[]>(() => {
+    const saved = localStorage.getItem("macarena_blogs");
+    return saved ? JSON.parse(saved) : BLOG_POSTS;
+  });
+
+  const [music, setMusic] = useState<MusicRelease[]>(() => {
+    const saved = localStorage.getItem("macarena_music");
+    return saved ? JSON.parse(saved) : MUSIC_RELEASES;
+  });
+
+  const [beauty, setBeauty] = useState<BeautyProduct[]>(() => {
+    const saved = localStorage.getItem("macarena_beauty");
+    return saved ? JSON.parse(saved) : BEAUTY_PRODUCTS;
+  });
+
+  const [fashion, setFashion] = useState<FashionLook[]>(() => {
+    const saved = localStorage.getItem("macarena_fashion");
+    return saved ? JSON.parse(saved) : FASHION_LOOKS;
+  });
+
+  const [siteSettings, setSiteSettings] = useState<SiteSettings>(() => {
+    const saved = localStorage.getItem("macarena_settings");
+    return saved ? JSON.parse(saved) : {
+      heroTitle: "Curating the quiet poetry of everyday life.",
+      heroBio: "Welcome Girlies and friends of all paths! I am Macarena Mantilla. I believe writing, poetry, and storytelling are powerful vessels of self-reflection and mental well-being. Here, we cultivate an inspiring, gender-neutral sanctuary for journaling, slow literature, and healing—including a dedicated space supporting men's mental health, because vulnerability is a strength that belongs to everyone.",
+      aboutText1: "My journey started with a simple notebook and a second-hand acoustic guitar. To me, songwriting was a natural extension of poetry, and styling an outfit was just another way to compose a visual stanza. I found that the quiet grace of a clean, ceramide-moisturized face was the perfect canvas for creative expression.",
+      aboutText2: "Today, I cultivate a digital sanctuary where I share these interconnected passions. I write about poetry structures, synth frequency synesthesia, skincare barriers, and vintage fabric sourcing. Every piece of content is crafted to help you find art and calmness in the details of your everyday routine.",
+      contactEmail: "businessmacarena@gmail.com",
+      contactPhone: "250-879-3703"
+    };
+  });
+
+  const [contactMessages, setContactMessages] = useState<ContactMessage[]>(() => {
+    const saved = localStorage.getItem("macarena_messages");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // Sync Datasets to LocalStorage
+  useEffect(() => {
+    localStorage.setItem("macarena_blogs", JSON.stringify(blogs));
+  }, [blogs]);
+
+  useEffect(() => {
+    localStorage.setItem("macarena_music", JSON.stringify(music));
+  }, [music]);
+
+  useEffect(() => {
+    localStorage.setItem("macarena_beauty", JSON.stringify(beauty));
+  }, [beauty]);
+
+  useEffect(() => {
+    localStorage.setItem("macarena_fashion", JSON.stringify(fashion));
+  }, [fashion]);
+
+  useEffect(() => {
+    localStorage.setItem("macarena_settings", JSON.stringify(siteSettings));
+  }, [siteSettings]);
+
+  useEffect(() => {
+    localStorage.setItem("macarena_messages", JSON.stringify(contactMessages));
+  }, [contactMessages]);
+
+  // Admin Auth Handlers
+  const handleAdminLogin = (email: string, pass: string): boolean => {
+    if (email.trim().toLowerCase() === "businessmacarena@gmail.com" && pass === "Admin@2026") {
+      setIsAdminLoggedIn(true);
+      localStorage.setItem("macarena_admin_auth", "true");
+      return true;
+    }
+    return false;
+  };
+
+  const handleAdminLogout = () => {
+    setIsAdminLoggedIn(false);
+    localStorage.removeItem("macarena_admin_auth");
+    setCurrentTab("home");
+    showToast("Logged out of Admin Panel.");
+  };
+
+  // Blog CRUD Handlers
+  const handleAddBlog = (newBlogData: Omit<BlogPost, "id">) => {
+    const newBlog: BlogPost = {
+      ...newBlogData,
+      id: "blog-" + Date.now()
+    };
+    setBlogs((prev) => [newBlog, ...prev]);
+  };
+
+  const handleEditBlog = (updatedBlog: BlogPost) => {
+    setBlogs((prev) => prev.map((b) => (b.id === updatedBlog.id ? updatedBlog : b)));
+    if (selectedPost?.id === updatedBlog.id) {
+      setSelectedPost(updatedBlog);
+    }
+  };
+
+  const handleDeleteBlog = (id: string) => {
+    setBlogs((prev) => prev.filter((b) => b.id !== id));
+    if (selectedPost?.id === id) {
+      setSelectedPost(null);
+    }
+  };
+
+  // Music CRUD Handlers
+  const handleAddMusic = (newMusicData: Omit<MusicRelease, "id">) => {
+    const newTrack: MusicRelease = {
+      ...newMusicData,
+      id: "music-" + Date.now()
+    };
+    setMusic((prev) => [newTrack, ...prev]);
+  };
+
+  const handleEditMusic = (updatedTrack: MusicRelease) => {
+    setMusic((prev) => prev.map((m) => (m.id === updatedTrack.id ? updatedTrack : m)));
+  };
+
+  const handleDeleteMusic = (id: string) => {
+    setMusic((prev) => prev.filter((m) => m.id !== id));
+  };
+
+  // Beauty CRUD Handlers
+  const handleAddBeauty = (newBeautyData: Omit<BeautyProduct, "id">) => {
+    const newProd: BeautyProduct = {
+      ...newBeautyData,
+      id: "beauty-" + Date.now()
+    };
+    setBeauty((prev) => [newProd, ...prev]);
+  };
+
+  const handleEditBeauty = (updatedProd: BeautyProduct) => {
+    setBeauty((prev) => prev.map((p) => (p.id === updatedProd.id ? updatedProd : p)));
+  };
+
+  const handleDeleteBeauty = (id: string) => {
+    setBeauty((prev) => prev.filter((p) => p.id !== id));
+  };
+
+  // Fashion CRUD Handlers
+  const handleAddFashion = (newFashionData: Omit<FashionLook, "id">) => {
+    const newLook: FashionLook = {
+      ...newFashionData,
+      id: "fashion-" + Date.now()
+    };
+    setFashion((prev) => [newLook, ...prev]);
+  };
+
+  const handleEditFashion = (updatedLook: FashionLook) => {
+    setFashion((prev) => prev.map((l) => (l.id === updatedLook.id ? updatedLook : l)));
+  };
+
+  const handleDeleteFashion = (id: string) => {
+    setFashion((prev) => prev.filter((l) => l.id !== id));
+  };
+
+  // Settings & Contact Handlers
+  const handleUpdateSettings = (newSettings: SiteSettings) => {
+    setSiteSettings(newSettings);
+  };
+
+  const handleDeleteMessage = (id: string) => {
+    setContactMessages((prev) => prev.filter((m) => m.id !== id));
+  };
+
+  const handleResetData = () => {
+    setBlogs(BLOG_POSTS);
+    setMusic(MUSIC_RELEASES);
+    setBeauty(BEAUTY_PRODUCTS);
+    setFashion(FASHION_LOOKS);
+    setSiteSettings({
+      heroTitle: "Curating the quiet poetry of everyday life.",
+      heroBio: "Welcome Girlies and friends of all paths! I am Macarena Mantilla. I believe writing, poetry, and storytelling are powerful vessels of self-reflection and mental well-being. Here, we cultivate an inspiring, gender-neutral sanctuary for journaling, slow literature, and healing—including a dedicated space supporting men's mental health, because vulnerability is a strength that belongs to everyone.",
+      aboutText1: "My journey started with a simple notebook and a second-hand acoustic guitar. To me, songwriting was a natural extension of poetry, and styling an outfit was just another way to compose a visual stanza. I found that the quiet grace of a clean, ceramide-moisturized face was the perfect canvas for creative expression.",
+      aboutText2: "Today, I cultivate a digital sanctuary where I share these interconnected passions. I write about poetry structures, synth frequency synesthesia, skincare barriers, and vintage fabric sourcing. Every piece of content is crafted to help you find art and calmness in the details of your everyday routine.",
+      contactEmail: "businessmacarena@gmail.com",
+      contactPhone: "250-879-3703"
+    });
+    setContactMessages([]);
+    localStorage.removeItem("macarena_blogs");
+    localStorage.removeItem("macarena_music");
+    localStorage.removeItem("macarena_beauty");
+    localStorage.removeItem("macarena_fashion");
+    localStorage.removeItem("macarena_settings");
+    localStorage.removeItem("macarena_messages");
+  };
 
   // Custom premium responsive toast state
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -104,8 +295,8 @@ export default function App() {
   };
 
   const handleGlobalAudioToggle = () => {
-    if (!playingTrack && MUSIC_RELEASES.length > 0) {
-      handleTogglePlayTrack(MUSIC_RELEASES[0]);
+    if (!playingTrack && music.length > 0) {
+      handleTogglePlayTrack(music[0]);
       return;
     }
     if (playingTrack) {
@@ -137,7 +328,18 @@ export default function App() {
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!contactForm.name || !contactForm.email || !contactForm.message) return;
+    
+    const newMsg: ContactMessage = {
+      id: "msg-" + Date.now(),
+      name: contactForm.name,
+      email: contactForm.email,
+      subject: contactForm.subject || "General Inquiry",
+      message: contactForm.message,
+      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    };
+    setContactMessages((prev) => [newMsg, ...prev]);
     setContactSubmitted(true);
+    showToast("Message sent to Macarena!");
   };
 
   // Beauty Favorite Toggles
@@ -194,7 +396,7 @@ export default function App() {
           </button>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-7 text-xs font-medium tracking-widest uppercase">
+          <nav className="hidden lg:flex items-center space-x-6 text-xs font-medium tracking-widest uppercase">
             {(["home", "about", "blog", "music", "beauty", "fashion", "premium", "contact"] as const).map((tab) => (
               <button
                 key={tab}
@@ -215,7 +417,18 @@ export default function App() {
           </nav>
 
           {/* Action Call To Action */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-3">
+            <button 
+              onClick={() => navigateTo("admin")}
+              className={`text-xs uppercase tracking-widest px-3.5 py-2.5 rounded-full font-semibold transition-all duration-300 border flex items-center gap-1.5 ${
+                currentTab === "admin"
+                  ? "bg-brand-purple text-white border-brand-purple"
+                  : "bg-white text-slate-700 hover:text-brand-purple border-slate-200 shadow-sm"
+              }`}
+            >
+              <ShieldCheck className="w-3.5 h-3.5" /> Admin
+            </button>
+
             <button 
               onClick={() => navigateTo("premium")}
               className={`text-xs uppercase tracking-widest px-5 py-2.5 rounded-full font-medium transition-all duration-300 shadow-sm border ${
@@ -248,17 +461,18 @@ export default function App() {
             exit={{ opacity: 0, y: -20 }}
             className="lg:hidden bg-cream border-b border-slate-200 shadow-xl fixed top-20 left-0 right-0 z-30 py-6 px-6 space-y-4 max-h-[80vh] overflow-y-auto"
           >
-            <div className="grid grid-cols-2 gap-4">
-              {(["home", "about", "blog", "music", "beauty", "fashion", "premium", "contact"] as const).map((tab) => (
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {(["home", "about", "blog", "music", "beauty", "fashion", "premium", "contact", "admin"] as const).map((tab) => (
                 <button
                   key={tab}
                   onClick={() => navigateTo(tab)}
-                  className={`text-center py-3.5 px-3 rounded-2xl text-xs font-semibold tracking-widest uppercase transition-all border min-h-[44px] ${
+                  className={`text-center py-3.5 px-3 rounded-2xl text-xs font-semibold tracking-widest uppercase transition-all border min-h-[44px] flex items-center justify-center gap-1.5 ${
                     currentTab === tab 
                       ? "bg-gradient-to-r from-brand-purple to-brand-pink text-white border-transparent font-bold shadow-md" 
                       : "bg-white hover:bg-slate-50 text-slate-700 border-slate-100 shadow-sm"
                   }`}
                 >
+                  {tab === "admin" && <ShieldCheck className="w-3.5 h-3.5" />}
                   {tab}
                 </button>
               ))}
@@ -277,6 +491,39 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-grow">
+        {/* VIEW: ADMIN PANEL */}
+        {currentTab === "admin" && (
+          <AdminPanel 
+            isAdminLoggedIn={isAdminLoggedIn}
+            onLogin={handleAdminLogin}
+            onLogout={handleAdminLogout}
+            blogs={blogs}
+            onAddBlog={handleAddBlog}
+            onEditBlog={handleEditBlog}
+            onDeleteBlog={handleDeleteBlog}
+            music={music}
+            onAddMusic={handleAddMusic}
+            onEditMusic={handleEditMusic}
+            onDeleteMusic={handleDeleteMusic}
+            beauty={beauty}
+            onAddBeauty={handleAddBeauty}
+            onEditBeauty={handleEditBeauty}
+            onDeleteBeauty={handleDeleteBeauty}
+            fashion={fashion}
+            onAddFashion={handleAddFashion}
+            onEditFashion={handleEditFashion}
+            onDeleteFashion={handleDeleteFashion}
+            settings={siteSettings}
+            onUpdateSettings={handleUpdateSettings}
+            subscribers={subscribedEmails}
+            messages={contactMessages}
+            onDeleteMessage={handleDeleteMessage}
+            onResetData={handleResetData}
+            onCloseAdmin={() => navigateTo("home")}
+            showToast={showToast}
+          />
+        )}
+
         {/* VIEW: HOME */}
         {currentTab === "home" && (
           <div id="view-home">
@@ -296,11 +543,11 @@ export default function App() {
                   </div>
 
                   <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-charcoal leading-[1.1] max-w-2xl">
-                    Curating the quiet <span className="text-brand-purple font-semibold italic">poetry</span> of everyday life.
+                    {siteSettings.heroTitle}
                   </h1>
 
                   <p className="text-sm md:text-base text-slate-900 font-medium leading-relaxed max-w-xl text-center">
-                    Welcome Girlies and friends of all paths! I am Macarena Mantilla. I believe writing, poetry, and storytelling are powerful vessels of self-reflection and mental well-being. Here, we cultivate an inspiring, gender-neutral sanctuary for journaling, slow literature, and healing—including a dedicated space supporting men's mental health, because vulnerability is a strength that belongs to everyone.
+                    {siteSettings.heroBio}
                   </p>
 
                   {/* CTA Buttons */}
@@ -490,12 +737,8 @@ export default function App() {
                 <p className="text-xs font-mono text-slate-400 uppercase tracking-wider">Meet Macarena Mantilla</p>
                 
                 <div className="space-y-4 text-slate-600 text-sm leading-relaxed">
-                  <p>
-                    My journey started with a simple notebook and a second-hand acoustic guitar. To me, songwriting was a natural extension of poetry, and styling an outfit was just another way to compose a visual stanza. I found that the quiet grace of a clean, ceramide-moisturized face was the perfect canvas for creative expression.
-                  </p>
-                  <p>
-                    Today, I cultivate a digital sanctuary where I share these interconnected passions. I write about poetry structures, synth frequency synesthesia, skincare barriers, and vintage fabric sourcing. Every piece of content is crafted to help you find art and calmness in the details of your everyday routine.
-                  </p>
+                  <p>{siteSettings.aboutText1}</p>
+                  <p>{siteSettings.aboutText2}</p>
                   <p>
                     Whether you are here to read my weekend diaries, stream my raw vocal memos, or grab seasonal tailoring tips, I am incredibly honored to have you as part of this creative community.
                   </p>
@@ -600,7 +843,7 @@ export default function App() {
 
             {/* Blog Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {BLOG_POSTS.filter((post) => {
+              {blogs.filter((post) => {
                 const matchQuery = post.title.toLowerCase().includes(blogSearch.toLowerCase()) || 
                                    post.summary.toLowerCase().includes(blogSearch.toLowerCase()) ||
                                    post.tags.some(t => t.toLowerCase().includes(blogSearch.toLowerCase()));
@@ -861,7 +1104,7 @@ export default function App() {
                       <Music className="w-12 h-12 text-slate-300 mx-auto animate-pulse" />
                       <p className="text-xs text-slate-500">No active track playing.</p>
                       <button 
-                        onClick={() => handleTogglePlayTrack(MUSIC_RELEASES[0])}
+                        onClick={() => music.length > 0 && handleTogglePlayTrack(music[0])}
                         className="bg-charcoal text-white text-xs uppercase tracking-widest px-6 py-3 rounded-full font-semibold hover:bg-slate-800 transition-colors"
                       >
                         Start First Track
@@ -893,7 +1136,7 @@ export default function App() {
                 <h3 className="font-serif text-lg font-bold text-left mb-4">Releases Catalog</h3>
                 
                 <div className="space-y-4">
-                  {MUSIC_RELEASES.map((track) => {
+                  {music.map((track) => {
                     const isActive = playingTrack?.id === track.id;
                     const isLocked = track.isPremiumOnly && !isPremiumUser;
 
@@ -997,7 +1240,7 @@ export default function App() {
 
             {/* Product Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {BEAUTY_PRODUCTS.map((prod) => {
+              {beauty.map((prod) => {
                 const isFav = favoriteProducts.includes(prod.id);
 
                 return (
@@ -1119,7 +1362,7 @@ export default function App() {
 
             {/* Gallery Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {FASHION_LOOKS.filter(l => fashionSeason === "All" || l.season === fashionSeason).map((look) => (
+              {fashion.filter(l => fashionSeason === "All" || l.season === fashionSeason).map((look) => (
                 <div 
                   key={look.id}
                   className="group relative rounded-3xl overflow-hidden aspect-[3/4] bg-slate-100 shadow-sm border border-slate-100 hover:shadow-md transition-all cursor-pointer"
@@ -1467,8 +1710,8 @@ export default function App() {
                       </div>
                       <div>
                         <p className="text-[10px] font-mono text-slate-400 uppercase">Primary Business Email</p>
-                        <a href="mailto:businessmacarena@gmail.com" className="text-xs font-semibold hover:underline text-slate-700">
-                          businessmacarena@gmail.com
+                        <a href={`mailto:${siteSettings.contactEmail}`} className="text-xs font-semibold hover:underline text-slate-700">
+                          {siteSettings.contactEmail}
                         </a>
                       </div>
                     </div>
@@ -1479,8 +1722,8 @@ export default function App() {
                       </div>
                       <div>
                         <p className="text-[10px] font-mono text-slate-400 uppercase">Direct Office Telephone</p>
-                        <a href="tel:2508793703" className="text-xs font-semibold hover:underline text-slate-700">
-                          250-879-3703
+                        <a href={`tel:${siteSettings.contactPhone.replace(/\D/g, '')}`} className="text-xs font-semibold hover:underline text-slate-700">
+                          {siteSettings.contactPhone}
                         </a>
                       </div>
                     </div>
@@ -1632,10 +1875,18 @@ export default function App() {
 
             {/* Column 4: Legals / Subscription */}
             <div className="space-y-3">
-              <h4 className="text-[10px] uppercase font-mono tracking-widest font-bold bg-gradient-to-r from-brand-pink to-brand-purple bg-clip-text text-transparent">Legal Agreements</h4>
+              <h4 className="text-[10px] uppercase font-mono tracking-widest font-bold bg-gradient-to-r from-brand-pink to-brand-purple bg-clip-text text-transparent">Administration</h4>
               <ul className="space-y-2 text-xs">
-                <li><button onClick={() => showToast("Simulated Privacy Policy. Your brand details are securely processed offline.")} className="hover:text-white transition-colors">Privacy Policy</button></li>
-                <li><button onClick={() => showToast("Simulated Terms of Service. Crafted lovingly by iWebNext.")} className="hover:text-white transition-colors">Terms of Service</button></li>
+                <li>
+                  <button 
+                    onClick={() => navigateTo("admin")} 
+                    className="hover:text-white transition-colors text-brand-pink font-semibold flex items-center gap-1.5"
+                  >
+                    <ShieldCheck className="w-3.5 h-3.5" /> Admin Portal
+                  </button>
+                </li>
+                <li><button onClick={() => showToast("Simulated Privacy Policy. Your brand details are securely processed offline.")} className="hover:text-slate-300 transition-colors">Privacy Policy</button></li>
+                <li><button onClick={() => showToast("Simulated Terms of Service. Crafted lovingly by iWebNext.")} className="hover:text-slate-300 transition-colors">Terms of Service</button></li>
               </ul>
             </div>
           </div>
