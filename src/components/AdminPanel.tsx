@@ -467,7 +467,7 @@ export default function AdminPanel({
           </div>
           <div>
             <h2 className="font-serif text-lg font-bold text-white flex items-center gap-2">
-              Macarena Mantilla <span className="text-[10px] bg-brand-purple/30 text-brand-pink px-2 py-0.5 rounded-full uppercase tracking-wider font-mono">Admin</span>
+              <span className="text-white">Macarena Mantilla</span> <span className="text-[10px] bg-brand-purple/30 text-brand-pink px-2 py-0.5 rounded-full uppercase tracking-wider font-mono">Admin</span>
             </h2>
             <p className="text-xs text-slate-400">Content Management System</p>
           </div>
