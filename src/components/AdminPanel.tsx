@@ -849,7 +849,7 @@ export default function AdminPanel({
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-serif text-2xl font-bold text-white">Holy Grail Beauty Products</h3>
+                  <h3 className="font-serif text-2xl font-bold !text-white text-white" style={{ color: '#ffffff' }}>Holy Grail Beauty Products</h3>
                   <p className="text-xs text-slate-400 mt-0.5">Manage curated skincare, makeup, and fragrance recommendations.</p>
                 </div>
                 <button
@@ -870,7 +870,7 @@ export default function AdminPanel({
                           <span className="text-[10px] text-slate-400 uppercase font-mono">{prod.brand}</span>
                           <span className="text-xs text-amber-400 font-bold">★ {prod.rating}</span>
                         </div>
-                        <h4 className="font-serif text-base font-bold text-white mt-0.5">{prod.name}</h4>
+                        <h4 className="font-serif text-base font-bold !text-white text-white mt-0.5" style={{ color: '#ffffff' }}>{prod.name}</h4>
                         <p className="text-xs text-slate-400 line-clamp-2 mt-1">{prod.reviewText}</p>
                       </div>
                       <div className="flex items-center justify-end gap-2 mt-3 pt-2 border-t border-slate-800">
@@ -904,7 +904,7 @@ export default function AdminPanel({
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-serif text-2xl font-bold text-white">Fashion Lookbook</h3>
+                  <h3 className="font-serif text-2xl font-bold !text-white text-white" style={{ color: '#ffffff' }}>Fashion Lookbook</h3>
                   <p className="text-xs text-slate-400 mt-0.5">Manage seasonal style guides and vintage outfits.</p>
                 </div>
                 <button
@@ -924,7 +924,7 @@ export default function AdminPanel({
                         <span className="text-[10px] uppercase font-mono font-bold bg-brand-purple/20 text-brand-pink px-2 py-0.5 rounded-md">
                           {look.season}
                         </span>
-                        <h4 className="font-serif text-base font-bold text-white mt-1">{look.title}</h4>
+                        <h4 className="font-serif text-base font-bold !text-white text-white mt-1" style={{ color: '#ffffff' }}>{look.title}</h4>
                         <p className="text-xs text-slate-400 line-clamp-1 mt-0.5">{look.description}</p>
                       </div>
                       <div className="flex items-center justify-end gap-2 mt-3 pt-2 border-t border-slate-800">
@@ -957,7 +957,7 @@ export default function AdminPanel({
           {activeTab === "settings" && (
             <div className="space-y-6">
               <div>
-                <h3 className="font-serif text-2xl font-bold text-white">Website Hero & Bio Content</h3>
+                <h3 className="font-serif text-2xl font-bold !text-white text-white" style={{ color: '#ffffff' }}>Website Hero & Bio Content</h3>
                 <p className="text-xs text-slate-400 mt-0.5">Customize the intro headline, welcome paragraph, and contact info shown across the site.</p>
               </div>
 
@@ -1017,14 +1017,14 @@ export default function AdminPanel({
           {activeTab === "subscribers" && (
             <div className="space-y-8">
               <div>
-                <h3 className="font-serif text-2xl font-bold text-white">Subscribers & Inquiries</h3>
+                <h3 className="font-serif text-2xl font-bold !text-white text-white" style={{ color: '#ffffff' }}>Subscribers & Inquiries</h3>
                 <p className="text-xs text-slate-400 mt-0.5">Manage newsletter signups and view contact messages.</p>
               </div>
 
               {/* Newsletter list */}
               <div className="bg-slate-800/60 border border-slate-800 rounded-2xl p-6 space-y-4">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-mono uppercase text-slate-300 font-bold flex items-center gap-2">
+                  <h4 className="text-xs font-mono uppercase !text-white text-white font-bold flex items-center gap-2" style={{ color: '#ffffff' }}>
                     <Users className="w-4 h-4 text-brand-pink" /> Newsletter Subscribers ({subscribers.length})
                   </h4>
                 </div>
@@ -1043,7 +1043,7 @@ export default function AdminPanel({
 
               {/* Contact Messages */}
               <div className="bg-slate-800/60 border border-slate-800 rounded-2xl p-6 space-y-4">
-                <h4 className="text-xs font-mono uppercase text-slate-300 font-bold flex items-center gap-2">
+                <h4 className="text-xs font-mono uppercase !text-white text-white font-bold flex items-center gap-2" style={{ color: '#ffffff' }}>
                   <MessageSquare className="w-4 h-4 text-baby-teal" /> Received Contact Inquiries ({messages.length})
                 </h4>
                 {messages.length === 0 ? (
