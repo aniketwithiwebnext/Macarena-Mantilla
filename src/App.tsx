@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useScroll, useSpring } from "motion/react";
 import { 
   BookOpen, Music, Sparkles, Heart, Mail, Phone, ArrowUp, 
   ChevronRight, Menu, X, Search, Lock, Check, CheckCircle2, 
@@ -22,6 +22,14 @@ import { BlogPost, MusicRelease, FashionLook, BeautyProduct, SiteSettings, Conta
 import { playAmbientSynth, stopAmbientSynth } from "./utils/audio";
 
 export default function App() {
+  // Scroll Progress
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   // Navigation
   const [currentTab, setCurrentTab] = useState<"home" | "about" | "blog" | "music" | "beauty" | "fashion" | "premium" | "contact" | "admin">("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -360,6 +368,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-cream text-charcoal flex flex-col selection:bg-soft-pink selection:text-brand-pink overflow-x-hidden relative">
+      {/* Scroll Progress Bar at very top */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-pink via-brand-purple to-baby-teal origin-left z-[100] pointer-events-none shadow-sm"
+        style={{ scaleX }}
+      />
+
       {/* Premium Banner */}
       <AnimatePresence>
         {!isPremiumUser && (
