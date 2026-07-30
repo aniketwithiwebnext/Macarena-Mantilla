@@ -15,6 +15,8 @@ import SlidingHeroImages from "./components/SlidingHeroImages";
 import AdminPanel from "./components/AdminPanel";
 // @ts-ignore
 import macarenaGraduation from "./assets/images/macarena_graduation_1783457542849.jpg";
+
+const macarenaLogoUrl = "https://gjoznmzw2bc0wpip.public.blob.vercel-storage.com/Create_logo_for_macarena.ca_2K_202607310331.jpeg";
 import { BLOG_POSTS, MUSIC_RELEASES, BEAUTY_PRODUCTS, FASHION_LOOKS, PRICING_PLANS } from "./data";
 import { BlogPost, MusicRelease, FashionLook, BeautyProduct, SiteSettings, ContactMessage } from "./types";
 import { playAmbientSynth, stopAmbientSynth } from "./utils/audio";
@@ -385,14 +387,22 @@ export default function App() {
           {/* Logo */}
           <button 
             onClick={() => navigateTo("home")} 
-            className="flex flex-col items-start text-left cursor-pointer group"
+            className="flex items-center gap-3 cursor-pointer group"
           >
-            <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-charcoal group-hover:text-brand-purple transition-colors">
-              Macarena Mantilla
-            </span>
-            <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-brand-purple/70 font-semibold">
-              Content Creator
-            </span>
+            <img 
+              src={macarenaLogoUrl} 
+              alt="macarena.ca emblem logo" 
+              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-pink-200/90 object-cover shadow-sm group-hover:scale-105 transition-transform" 
+              referrerPolicy="no-referrer"
+            />
+            <div className="flex flex-col items-start text-left">
+              <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-charcoal group-hover:text-brand-purple transition-colors">
+                Macarena Mantilla
+              </span>
+              <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-brand-purple/80 font-semibold">
+                macarena.ca
+              </span>
+            </div>
           </button>
 
           {/* Desktop Navigation Links */}
@@ -546,7 +556,7 @@ export default function App() {
                     {siteSettings.heroTitle}
                   </h1>
 
-                  <p className="text-sm md:text-base text-slate-900 font-medium leading-relaxed max-w-xl text-center">
+                  <p className="text-sm md:text-base text-slate-950 font-semibold leading-relaxed max-w-xl text-center">
                     {siteSettings.heroBio}
                   </p>
 
@@ -574,7 +584,7 @@ export default function App() {
 
                   {/* Newsletter Fast Signup */}
                   <div className="pt-6 border-t border-slate-200 w-full max-w-md flex flex-col items-center">
-                    <p className="text-xs text-slate-500 font-mono mb-3">RECEIVE WEEKLY ESSAYS & SOUNDSCAPES</p>
+                    <p className="text-xs text-slate-700 font-mono font-semibold mb-3">RECEIVE WEEKLY ESSAYS & SOUNDSCAPES</p>
                     <form onSubmit={handleSubscribeNewsletter} className="flex gap-2 w-full">
                       <input 
                         type="email" 
@@ -605,21 +615,21 @@ export default function App() {
             <section className="py-16 bg-cream border-t border-slate-100">
               <div className="max-w-7xl mx-auto px-6">
                 <div className="text-center max-w-xl mx-auto mb-14 space-y-3">
-                  <h2 className="font-serif text-3xl font-bold tracking-tight">Curation, Prose & Creative Expression</h2>
-                  <p className="text-xs font-mono uppercase tracking-[0.25em] text-slate-400">inclusive writing, storytelling, and mental wellness for all</p>
+                  <h2 className="font-serif text-3xl font-bold tracking-tight text-charcoal">Curation, Prose & Creative Expression</h2>
+                  <p className="text-xs font-mono uppercase tracking-[0.25em] text-slate-700 font-semibold">inclusive writing, storytelling, and mental wellness for all</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {/* Card 1: Writing */}
                   <div 
                     onClick={() => navigateTo("blog")}
-                    className="p-8 rounded-3xl bg-white border border-slate-100 hover:border-soft-purple transition-all group cursor-pointer shadow-sm hover:shadow"
+                    className="p-8 rounded-3xl bg-white border border-slate-200 hover:border-soft-purple transition-all group cursor-pointer shadow-sm hover:shadow"
                   >
                     <div className="w-12 h-12 rounded-2xl bg-lavender flex items-center justify-center text-brand-purple mb-6 group-hover:scale-110 transition-transform">
                       <BookOpen className="w-5 h-5" />
                     </div>
-                    <h3 className="font-serif text-lg font-bold mb-2">Ethereal Prose</h3>
-                    <p className="text-xs text-slate-500 leading-relaxed">
+                    <h3 className="font-serif text-lg font-bold mb-2 text-charcoal">Ethereal Prose</h3>
+                    <p className="text-xs text-slate-800 font-medium leading-relaxed">
                       Poetry, reflective journaling, and empowering essays tailored for creative souls, celebrating mental wellness and shared journeys.
                     </p>
                     <span className="inline-flex items-center gap-1 text-[11px] font-mono text-brand-purple mt-4 uppercase tracking-wider font-bold">
@@ -630,13 +640,13 @@ export default function App() {
                   {/* Card 2: Music */}
                   <div 
                     onClick={() => navigateTo("music")}
-                    className="p-8 rounded-3xl bg-white border border-slate-100 hover:border-soft-pink transition-all group cursor-pointer shadow-sm hover:shadow"
+                    className="p-8 rounded-3xl bg-white border border-slate-200 hover:border-soft-pink transition-all group cursor-pointer shadow-sm hover:shadow"
                   >
                     <div className="w-12 h-12 rounded-2xl bg-pastel-pink flex items-center justify-center text-brand-pink mb-6 group-hover:scale-110 transition-transform">
                       <Music className="w-5 h-5" />
                     </div>
-                    <h3 className="font-serif text-lg font-bold mb-2">Pastel Soundscapes</h3>
-                    <p className="text-xs text-slate-500 leading-relaxed">
+                    <h3 className="font-serif text-lg font-bold mb-2 text-charcoal">Pastel Soundscapes</h3>
+                    <p className="text-xs text-slate-800 font-medium leading-relaxed">
                       Dreamy acoustic melodies, organic instrumentals, and synesthetic pop designed to soothe.
                     </p>
                     <span className="inline-flex items-center gap-1 text-[11px] font-mono text-brand-pink mt-4 uppercase tracking-wider font-bold">
@@ -647,13 +657,13 @@ export default function App() {
                   {/* Card 3: Beauty */}
                   <div 
                     onClick={() => navigateTo("beauty")}
-                    className="p-8 rounded-3xl bg-white border border-slate-100 hover:border-brand-pink/30 transition-all group cursor-pointer shadow-sm hover:shadow"
+                    className="p-8 rounded-3xl bg-white border border-slate-200 hover:border-brand-pink/30 transition-all group cursor-pointer shadow-sm hover:shadow"
                   >
                     <div className="w-12 h-12 rounded-2xl bg-soft-pink/30 flex items-center justify-center text-berry-pink mb-6 group-hover:scale-110 transition-transform">
                       <Sparkles className="w-5 h-5" />
                     </div>
-                    <h3 className="font-serif text-lg font-bold mb-2">Clean Glow</h3>
-                    <p className="text-xs text-slate-500 leading-relaxed">
+                    <h3 className="font-serif text-lg font-bold mb-2 text-charcoal">Clean Glow</h3>
+                    <p className="text-xs text-slate-800 font-medium leading-relaxed">
                       Minimal hydration routines, calming products, and gentle editorial beauty curation.
                     </p>
                     <span className="inline-flex items-center gap-1 text-[11px] font-mono text-berry-pink mt-4 uppercase tracking-wider font-bold">
@@ -664,13 +674,13 @@ export default function App() {
                   {/* Card 4: Fashion */}
                   <div 
                     onClick={() => navigateTo("fashion")}
-                    className="p-8 rounded-3xl bg-white border border-slate-100 hover:border-soft-purple/60 transition-all group cursor-pointer shadow-sm hover:shadow"
+                    className="p-8 rounded-3xl bg-white border border-slate-200 hover:border-soft-purple/60 transition-all group cursor-pointer shadow-sm hover:shadow"
                   >
                     <div className="w-12 h-12 rounded-2xl bg-soft-purple/30 flex items-center justify-center text-violet-accent mb-6 group-hover:scale-110 transition-transform">
                       <Compass className="w-5 h-5" />
                     </div>
-                    <h3 className="font-serif text-lg font-bold mb-2">Sustainable Style</h3>
-                    <p className="text-xs text-slate-500 leading-relaxed">
+                    <h3 className="font-serif text-lg font-bold mb-2 text-charcoal">Sustainable Style</h3>
+                    <p className="text-xs text-slate-800 font-medium leading-relaxed">
                       Artistic outfit pairing, seasonal style diaries, and finding timeless elegance in vintage fabrics.
                     </p>
                     <span className="inline-flex items-center gap-1 text-[11px] font-mono text-violet-accent mt-4 uppercase tracking-wider font-bold">
@@ -734,9 +744,9 @@ export default function App() {
                   Storytelling is the thread that binds our style.
                 </h2>
                 
-                <p className="text-xs font-mono text-slate-400 uppercase tracking-wider">Meet Macarena Mantilla</p>
+                <p className="text-xs font-mono text-slate-700 uppercase tracking-wider font-semibold">Meet Macarena Mantilla</p>
                 
-                <div className="space-y-4 text-slate-600 text-sm leading-relaxed">
+                <div className="space-y-4 text-slate-900 font-medium text-sm md:text-base leading-relaxed">
                   <p>{siteSettings.aboutText1}</p>
                   <p>{siteSettings.aboutText2}</p>
                   <p>
@@ -750,25 +760,25 @@ export default function App() {
                     <h4 className="font-serif text-sm font-bold text-charcoal flex items-center gap-1.5">
                       <BookOpen className="w-4 h-4 text-brand-purple" /> Writing & Essays
                     </h4>
-                    <p className="text-[11px] text-slate-500 mt-1">Lyrical reflections on art and life.</p>
+                    <p className="text-xs text-slate-700 font-medium mt-1">Lyrical reflections on art and life.</p>
                   </div>
                   <div>
                     <h4 className="font-serif text-sm font-bold text-charcoal flex items-center gap-1.5">
                       <Music className="w-4 h-4 text-brand-pink" /> Music Release
                     </h4>
-                    <p className="text-[11px] text-slate-500 mt-1">Dreamy, fingerstyle lo-fi acoustics.</p>
+                    <p className="text-xs text-slate-700 font-medium mt-1">Dreamy, fingerstyle lo-fi acoustics.</p>
                   </div>
                   <div>
                     <h4 className="font-serif text-sm font-bold text-charcoal flex items-center gap-1.5">
                       <Sparkles className="w-4 h-4 text-pink-700" /> Glow Beauty
                     </h4>
-                    <p className="text-[11px] text-slate-500 mt-1">Simplifying skincare and soft palettes.</p>
+                    <p className="text-xs text-slate-700 font-medium mt-1">Simplifying skincare and soft palettes.</p>
                   </div>
                   <div>
                     <h4 className="font-serif text-sm font-bold text-charcoal flex items-center gap-1.5">
                       <Compass className="w-4 h-4 text-slate-700" /> Pure Fashion
                     </h4>
-                    <p className="text-[11px] text-slate-500 mt-1">Vintage layering and styled collection.</p>
+                    <p className="text-xs text-slate-700 font-medium mt-1">Vintage layering and styled collection.</p>
                   </div>
                 </div>
               </div>
@@ -783,19 +793,19 @@ export default function App() {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-6 border-b border-slate-200">
               <div className="text-left space-y-2">
                 <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-brand-purple font-bold">The Creative Log</span>
-                <h2 className="font-serif text-3xl font-bold">Essays, Reviews & Journals</h2>
-                <p className="text-xs text-slate-500">Explore thoughts on slow lifestyle, poetry structures, and fashion curations.</p>
+                <h2 className="font-serif text-3xl font-bold text-charcoal">Essays, Reviews & Journals</h2>
+                <p className="text-xs text-slate-800 font-medium">Explore thoughts on slow lifestyle, poetry structures, and fashion curations.</p>
               </div>
 
               {/* Search */}
               <div className="relative w-full md:w-80">
-                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                 <input 
                   type="text" 
                   value={blogSearch}
                   onChange={(e) => setBlogSearch(e.target.value)}
                   placeholder="Search articles & tags..." 
-                  className="w-full bg-white border border-slate-200 rounded-full pl-10 pr-4 py-3 md:py-2.5 text-base md:text-xs focus:outline-none focus:ring-2 focus:ring-soft-purple text-charcoal shadow-inner min-h-[44px]"
+                  className="w-full bg-white border border-slate-300 rounded-full pl-10 pr-4 py-3 md:py-2.5 text-base md:text-xs focus:outline-none focus:ring-2 focus:ring-soft-purple text-charcoal font-medium shadow-inner min-h-[44px]"
                 />
               </div>
             </div>
@@ -877,21 +887,21 @@ export default function App() {
 
                   <div className="p-6 flex-1 flex flex-col justify-between text-left space-y-4">
                     <div className="space-y-2">
-                      <div className="flex items-center space-x-3 text-[10px] text-slate-400 font-mono">
-                        <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {post.date}</span>
-                        <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {post.readTime}</span>
+                      <div className="flex items-center space-x-3 text-[10px] text-slate-700 font-mono font-bold">
+                        <span className="flex items-center gap-1"><Calendar className="w-3 h-3 text-slate-500" /> {post.date}</span>
+                        <span className="flex items-center gap-1"><Clock className="w-3 h-3 text-slate-500" /> {post.readTime}</span>
                       </div>
                       <h3 className="font-serif text-lg font-bold text-charcoal group-hover:text-brand-purple transition-colors line-clamp-2">
                         {post.title}
                       </h3>
-                      <p className="text-xs text-slate-500 leading-relaxed line-clamp-3">
+                      <p className="text-xs text-slate-800 font-medium leading-relaxed line-clamp-3">
                         {post.summary}
                       </p>
                     </div>
 
-                    <div className="flex flex-wrap gap-1 pt-2 border-t border-slate-50">
+                    <div className="flex flex-wrap gap-1 pt-2 border-t border-slate-100">
                       {post.tags.map((tag) => (
-                        <span key={tag} className="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded-md">
+                        <span key={tag} className="text-[10px] bg-slate-100 text-slate-800 font-semibold px-2 py-0.5 rounded-md">
                           #{tag}
                         </span>
                       ))}
@@ -1037,8 +1047,8 @@ export default function App() {
             {/* Header */}
             <div className="text-left space-y-2 mb-12 pb-6 border-b border-slate-200">
               <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-brand-purple font-bold">Pastel Soundscapes</span>
-              <h2 className="font-serif text-3xl font-bold">Acoustic Indie & Dreamy Ambient Pop</h2>
-              <p className="text-xs text-slate-500">Listen to delicate fingerstyle loops, spoken poems, and synesthetic vocal tracks.</p>
+              <h2 className="font-serif text-3xl font-bold text-charcoal">Acoustic Indie & Dreamy Ambient Pop</h2>
+              <p className="text-xs text-slate-800 font-medium">Listen to delicate fingerstyle loops, spoken poems, and synesthetic vocal tracks.</p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -1064,9 +1074,9 @@ export default function App() {
                       </div>
                       
                       <div className="space-y-1">
-                        <span className="text-[10px] uppercase font-mono tracking-widest text-slate-400">{playingTrack.type}</span>
+                        <span className="text-[10px] uppercase font-mono tracking-widest text-slate-700 font-bold">{playingTrack.type}</span>
                         <h3 className="font-serif text-xl font-bold text-charcoal">{playingTrack.title}</h3>
-                        <p className="text-xs text-slate-500 leading-relaxed">{playingTrack.description}</p>
+                        <p className="text-xs text-slate-800 font-medium leading-relaxed">{playingTrack.description}</p>
                       </div>
 
                       {/* Mock waveform indicator playing dynamically! */}
@@ -1218,22 +1228,22 @@ export default function App() {
             {/* Header */}
             <div className="text-left space-y-2 mb-10 pb-6 border-b border-slate-200">
               <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-brand-purple font-bold">Minimal Pastel Glow</span>
-              <h2 className="font-serif text-3xl font-bold">Beauty Reviews & Holy Grails</h2>
-              <p className="text-xs text-slate-500">My botanical skincare routines, organic product curations, and clean beauty tutorials.</p>
+              <h2 className="font-serif text-3xl font-bold text-charcoal">Beauty Reviews & Holy Grails</h2>
+              <p className="text-xs text-slate-800 font-medium">My botanical skincare routines, organic product curations, and clean beauty tutorials.</p>
             </div>
 
             {/* Favorite Counter Ribbon */}
-            <div className="bg-gradient-to-r from-pastel-pink via-cream to-pastel-purple p-4 rounded-2xl border border-pink-100/60 mb-10 text-left flex items-center justify-between">
+            <div className="bg-gradient-to-r from-pastel-pink via-cream to-pastel-purple p-4 rounded-2xl border border-pink-200/80 mb-10 text-left flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="w-9 h-9 rounded-full bg-pink-50 flex items-center justify-center text-pink-600">
                   <Heart className="w-4 h-4 fill-pink-500 text-pink-500 animate-pulse" />
                 </div>
                 <div>
                   <h4 className="font-serif text-xs font-bold text-charcoal">Your Saved Holy Grails</h4>
-                  <p className="text-[10px] text-slate-500">You have favorited {favoriteProducts.length} items from Macarena's lists.</p>
+                  <p className="text-[10px] text-slate-700 font-medium">You have favorited {favoriteProducts.length} items from Macarena's lists.</p>
                 </div>
               </div>
-              <span className="text-xs font-mono bg-white px-3 py-1 rounded-full border border-slate-100 text-slate-600">
+              <span className="text-xs font-mono bg-white px-3 py-1 rounded-full border border-slate-200 text-slate-800 font-bold">
                 {favoriteProducts.length} Saved
               </span>
             </div>
@@ -1272,9 +1282,9 @@ export default function App() {
                       </div>
 
                       <div className="p-5 space-y-2">
-                        <span className="text-[9px] uppercase font-mono tracking-widest text-slate-400">{prod.brand} • {prod.category}</span>
+                        <span className="text-[9px] uppercase font-mono tracking-widest text-slate-700 font-bold">{prod.brand} • {prod.category}</span>
                         <h4 className="font-serif text-base font-bold text-charcoal line-clamp-1">{prod.name}</h4>
-                        <p className="text-xs text-slate-500 leading-relaxed line-clamp-4 italic bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                        <p className="text-xs text-slate-900 font-medium leading-relaxed line-clamp-4 italic bg-slate-50 p-2.5 rounded-lg border border-slate-200">
                           "{prod.reviewText}"
                         </p>
                       </div>
@@ -1306,26 +1316,26 @@ export default function App() {
               </div>
               <div className="lg:col-span-8 space-y-4">
                 <span className="text-[10px] uppercase tracking-[0.2em] font-mono text-brand-purple font-bold">Beauty Routine Editorial</span>
-                <h3 className="font-serif text-2xl font-bold">The Slow Glow: A 4-Step Skincare Routine</h3>
-                <p className="text-xs text-slate-500 leading-relaxed">
+                <h3 className="font-serif text-2xl font-bold text-charcoal">The Slow Glow: A 4-Step Skincare Routine</h3>
+                <p className="text-xs text-slate-800 font-medium leading-relaxed">
                   We often confuse abundance with quality. When I simplified my beauty routine to just four botanical steps, my skin's natural moisture barrier repaired itself. Here is the daily sequence I trust:
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                   <div className="space-y-1">
                     <h4 className="text-xs font-bold text-charcoal font-mono">01 / Gentle Herbal Cleansing</h4>
-                    <p className="text-[11px] text-slate-500">Green tea hydrosols dissolve oils without stripping natural sebum layers.</p>
+                    <p className="text-[11px] text-slate-700 font-medium">Green tea hydrosols dissolve oils without stripping natural sebum layers.</p>
                   </div>
                   <div className="space-y-1">
                     <h4 className="text-xs font-bold text-charcoal font-mono">02 / Deep Hydration Lock</h4>
-                    <p className="text-[11px] text-slate-500">Applying lightweight ceramide toner to damp skin prepares it for nourishment.</p>
+                    <p className="text-[11px] text-slate-700 font-medium">Applying lightweight ceramide toner to damp skin prepares it for nourishment.</p>
                   </div>
                   <div className="space-y-1">
                     <h4 className="text-xs font-bold text-charcoal font-mono">03 / Barrier Reinforcement</h4>
-                    <p className="text-[11px] text-slate-500">Squalan-based moisturizers block pollutants while maintaining a velvety velvet touch.</p>
+                    <p className="text-[11px] text-slate-700 font-medium">Squalan-based moisturizers block pollutants while maintaining a velvety velvet touch.</p>
                   </div>
                   <div className="space-y-1">
                     <h4 className="text-xs font-bold text-charcoal font-mono">04 / Mineral Screen Shield</h4>
-                    <p className="text-[11px] text-slate-500">Broad-spectrum mineral SPF protects your skin architecture against early damage.</p>
+                    <p className="text-[11px] text-slate-700 font-medium">Broad-spectrum mineral SPF protects your skin architecture against early damage.</p>
                   </div>
                 </div>
               </div>
@@ -1339,8 +1349,8 @@ export default function App() {
             {/* Header */}
             <div className="text-left space-y-2 mb-10 pb-6 border-b border-slate-200">
               <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-brand-purple font-bold">Timeless Silhouettes</span>
-              <h2 className="font-serif text-3xl font-bold">Outfit Inspiration & Lookbooks</h2>
-              <p className="text-xs text-slate-500">Exploring fluid tailoring, vintage textile blends, and minimalist capsule layering.</p>
+              <h2 className="font-serif text-3xl font-bold text-charcoal">Outfit Inspiration & Lookbooks</h2>
+              <p className="text-xs text-slate-800 font-medium">Exploring fluid tailoring, vintage textile blends, and minimalist capsule layering.</p>
             </div>
 
             {/* Filter tags for Seasons */}
@@ -1640,50 +1650,50 @@ export default function App() {
                   <form onSubmit={handleContactSubmit} className="space-y-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-1.5">
-                        <label className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Full Name</label>
+                        <label className="text-[10px] font-mono uppercase tracking-wider text-slate-700 font-bold">Full Name</label>
                         <input 
                           type="text" 
                           required
                           value={contactForm.name}
                           onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
                           placeholder="Your lovely name" 
-                          className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-3.5 md:py-3 text-base md:text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal min-h-[44px]"
+                          className="w-full bg-slate-50/50 border border-slate-300 rounded-xl px-4 py-3.5 md:py-3 text-base md:text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal font-medium min-h-[44px]"
                         />
                       </div>
                       <div className="space-y-1.5">
-                        <label className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Email Address</label>
+                        <label className="text-[10px] font-mono uppercase tracking-wider text-slate-700 font-bold">Email Address</label>
                         <input 
                           type="email" 
                           required
                           value={contactForm.email}
                           onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
                           placeholder="your.email@example.com" 
-                          className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-3.5 md:py-3 text-base md:text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal min-h-[44px]"
+                          className="w-full bg-slate-50/50 border border-slate-300 rounded-xl px-4 py-3.5 md:py-3 text-base md:text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal font-medium min-h-[44px]"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Subject Theme</label>
+                      <label className="text-[10px] font-mono uppercase tracking-wider text-slate-700 font-bold">Subject Theme</label>
                       <input 
                         type="text" 
                         required
                         value={contactForm.subject}
                         onChange={(e) => setContactForm({ ...contactForm, subject: e.target.value })}
                         placeholder="Collaboration, Poetry feedback, Business inquiry..." 
-                        className="w-full bg-slate-50/50 border border-slate-200 rounded-xl px-4 py-3.5 md:py-3 text-base md:text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal min-h-[44px]"
+                        className="w-full bg-slate-50/50 border border-slate-300 rounded-xl px-4 py-3.5 md:py-3 text-base md:text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal font-medium min-h-[44px]"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Lyrical Message</label>
+                      <label className="text-[10px] font-mono uppercase tracking-wider text-slate-700 font-bold">Lyrical Message</label>
                       <textarea 
                         rows={5}
                         required
                         value={contactForm.message}
                         onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
                         placeholder="Write your creative proposal here..." 
-                        className="w-full bg-slate-50/50 border border-slate-200 rounded-2xl p-4 text-base md:text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal"
+                        className="w-full bg-slate-50/50 border border-slate-300 rounded-2xl p-4 text-base md:text-xs focus:outline-none focus:ring-2 focus:ring-baby-teal text-charcoal font-medium"
                       />
                     </div>
 
@@ -1709,8 +1719,8 @@ export default function App() {
                         <Mail className="w-4.5 h-4.5" />
                       </div>
                       <div>
-                        <p className="text-[10px] font-mono text-slate-400 uppercase">Primary Business Email</p>
-                        <a href={`mailto:${siteSettings.contactEmail}`} className="text-xs font-semibold hover:underline text-slate-700">
+                        <p className="text-[10px] font-mono text-slate-700 font-bold uppercase">Primary Business Email</p>
+                        <a href={`mailto:${siteSettings.contactEmail}`} className="text-xs font-bold hover:underline text-slate-900">
                           {siteSettings.contactEmail}
                         </a>
                       </div>
@@ -1721,8 +1731,8 @@ export default function App() {
                         <Phone className="w-4.5 h-4.5" />
                       </div>
                       <div>
-                        <p className="text-[10px] font-mono text-slate-400 uppercase">Direct Office Telephone</p>
-                        <a href={`tel:${siteSettings.contactPhone.replace(/\D/g, '')}`} className="text-xs font-semibold hover:underline text-slate-700">
+                        <p className="text-[10px] font-mono text-slate-700 font-bold uppercase">Direct Office Telephone</p>
+                        <a href={`tel:${siteSettings.contactPhone.replace(/\D/g, '')}`} className="text-xs font-bold hover:underline text-slate-900">
                           {siteSettings.contactPhone}
                         </a>
                       </div>
@@ -1733,8 +1743,8 @@ export default function App() {
                         <MapPin className="w-4.5 h-4.5" />
                       </div>
                       <div>
-                        <p className="text-[10px] font-mono text-slate-400 uppercase">Creative Headquarters</p>
-                        <p className="text-xs font-semibold text-slate-700">
+                        <p className="text-[10px] font-mono text-slate-700 font-bold uppercase">Creative Headquarters</p>
+                        <p className="text-xs font-bold text-slate-900">
                           Vancouver, BC, Canada
                         </p>
                       </div>
@@ -1743,7 +1753,7 @@ export default function App() {
 
                   {/* Social media connections */}
                   <div className="pt-4 border-t border-slate-100">
-                    <p className="text-[10px] font-mono text-slate-400 uppercase mb-3">FOLLOW MACARENA'S STYLING DIARIES</p>
+                    <p className="text-[10px] font-mono text-slate-700 font-bold uppercase mb-3">FOLLOW MACARENA'S STYLING DIARIES</p>
                     <div className="flex gap-2">
                       <a 
                         href="https://www.instagram.com/macarenamantillas" 
@@ -1810,7 +1820,18 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-left">
             {/* Column 1: Brand statement */}
             <div className="space-y-4">
-              <h3 className="font-serif text-lg font-bold bg-gradient-to-r from-brand-pink to-brand-purple bg-clip-text text-transparent tracking-tight">Macarena Mantilla</h3>
+              <div className="flex items-center gap-3">
+                <img 
+                  src={macarenaLogoUrl} 
+                  alt="macarena.ca logo" 
+                  className="w-10 h-10 rounded-full border border-slate-700 object-cover shadow-sm" 
+                  referrerPolicy="no-referrer"
+                />
+                <div>
+                  <h3 className="font-serif text-lg font-bold bg-gradient-to-r from-brand-pink to-brand-purple bg-clip-text text-transparent tracking-tight">Macarena Mantilla</h3>
+                  <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">macarena.ca</span>
+                </div>
+              </div>
               <p className="text-xs text-slate-400 leading-relaxed">
                 A premium and warm digital sanctuary where writing, acoustic soundscapes, clean beauty, and timeless fashion intertwine gracefully.
               </p>
