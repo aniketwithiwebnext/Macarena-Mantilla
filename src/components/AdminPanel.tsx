@@ -372,10 +372,10 @@ export default function AdminPanel({
             <div className="w-14 h-14 bg-gradient-to-tr from-brand-purple to-brand-pink rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-brand-purple/30">
               <ShieldCheck className="w-8 h-8 text-white" />
             </div>
-            <h1 className="font-serif text-2xl font-bold text-white tracking-wide">
+            <h1 className="font-serif text-2xl font-bold text-white tracking-wide" style={{ color: '#ffffff' }}>
               Macarena Mantilla
             </h1>
-            <p className="text-xs text-slate-400 mt-1 uppercase tracking-widest font-mono">
+            <p className="text-xs text-slate-200 mt-1 uppercase tracking-widest font-mono font-semibold" style={{ color: '#e2e8f0' }}>
               Admin Portal
             </p>
           </div>
@@ -467,9 +467,9 @@ export default function AdminPanel({
           </div>
           <div>
             <h2 className="font-serif text-lg font-bold text-white flex items-center gap-2">
-              <span className="text-white">Macarena Mantilla</span> <span className="text-[10px] bg-brand-purple/30 text-brand-pink px-2 py-0.5 rounded-full uppercase tracking-wider font-mono">Admin</span>
+              <span className="text-white" style={{ color: '#ffffff' }}>Macarena Mantilla</span> <span className="text-[10px] bg-brand-purple/30 text-brand-pink px-2 py-0.5 rounded-full uppercase tracking-wider font-mono">Admin</span>
             </h2>
-            <p className="text-xs text-slate-400">Content Management System</p>
+            <p className="text-xs text-slate-200" style={{ color: '#e2e8f0' }}>Content Management System</p>
           </div>
         </div>
 
@@ -598,8 +598,8 @@ export default function AdminPanel({
             <div className="space-y-8">
               <div className="bg-gradient-to-r from-brand-purple/30 via-slate-900 to-brand-pink/20 border border-brand-purple/30 rounded-2xl p-6 relative overflow-hidden">
                 <div className="relative z-10">
-                  <h3 className="font-serif text-2xl font-bold text-white">Welcome back, Macarena!</h3>
-                  <p className="text-xs text-slate-300 mt-1 max-w-xl leading-relaxed">
+                  <h3 className="font-serif text-2xl font-bold !text-white text-white" style={{ color: '#ffffff' }}>Welcome back, Macarena!</h3>
+                  <p className="text-xs !text-white text-white mt-1 max-w-xl leading-relaxed font-medium" style={{ color: '#ffffff' }}>
                     You have complete control over your blog posts, music releases, beauty product recommendations, fashion lookbook, and welcome bio text right from this admin panel.
                   </p>
                 </div>
@@ -645,7 +645,7 @@ export default function AdminPanel({
 
               {/* Quick Actions Bar */}
               <div className="bg-slate-800/40 border border-slate-800 rounded-2xl p-6">
-                <h4 className="text-xs font-mono uppercase text-slate-400 tracking-wider font-bold mb-4">Quick Content Actions</h4>
+                <h4 className="text-xs font-mono uppercase !text-white text-white tracking-wider font-bold mb-4" style={{ color: '#ffffff' }}>Quick Content Actions</h4>
                 <div className="flex flex-wrap gap-3">
                   <button
                     onClick={() => { setActiveTab("blogs"); openNewBlogModal(); }}
@@ -677,7 +677,7 @@ export default function AdminPanel({
               {/* Recent Articles Table Preview */}
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-mono uppercase text-slate-400 tracking-wider font-bold">Recent Published Articles</h4>
+                  <h4 className="text-xs font-mono uppercase !text-white text-white tracking-wider font-bold" style={{ color: '#ffffff' }}>Recent Published Articles</h4>
                   <button onClick={() => setActiveTab("blogs")} className="text-xs text-brand-pink hover:underline">View All</button>
                 </div>
                 <div className="space-y-2">
@@ -686,7 +686,7 @@ export default function AdminPanel({
                       <div className="flex items-center gap-3">
                         <img src={post.image} alt={post.title} className="w-12 h-12 object-cover rounded-lg border border-slate-700 shrink-0" />
                         <div>
-                          <h5 className="font-semibold text-sm text-white line-clamp-1">{post.title}</h5>
+                          <h5 className="font-semibold text-sm !text-white text-white line-clamp-1" style={{ color: '#ffffff' }}>{post.title}</h5>
                           <p className="text-xs text-slate-400 flex items-center gap-2 mt-0.5">
                             <span className="text-brand-purple font-medium">{post.category}</span> • <span>{post.date}</span>
                           </p>
@@ -756,7 +756,7 @@ export default function AdminPanel({
                             )}
                             <span className="text-xs text-slate-400">{blog.date}</span>
                           </div>
-                          <h4 className="font-serif text-base font-bold text-white mt-1">{blog.title}</h4>
+                          <h4 className="font-serif text-base font-bold !text-white text-white mt-1" style={{ color: '#ffffff' }}>{blog.title}</h4>
                           <p className="text-xs text-slate-400 line-clamp-1 mt-0.5">{blog.summary}</p>
                         </div>
                       </div>
