@@ -710,7 +710,7 @@ export default function AdminPanel({
             <div className="space-y-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <h3 className="font-serif text-2xl font-bold text-white">Blog & Poetry Management</h3>
+                  <h3 className="font-serif text-2xl font-bold !text-white text-white" style={{ color: '#ffffff' }}>Blog & Poetry Management</h3>
                   <p className="text-xs text-slate-400 mt-0.5">Add, edit, or delete articles, prose, and lifestyle entries.</p>
                 </div>
                 <button
@@ -792,7 +792,7 @@ export default function AdminPanel({
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-serif text-2xl font-bold text-white">Music & Soundscapes</h3>
+                  <h3 className="font-serif text-2xl font-bold !text-white text-white" style={{ color: '#ffffff' }}>Music & Soundscapes</h3>
                   <p className="text-xs text-slate-400 mt-0.5">Manage discography, singles, EPs, and audio demos.</p>
                 </div>
                 <button
@@ -815,7 +815,7 @@ export default function AdminPanel({
                           </span>
                           <span className="text-xs text-slate-400">{track.releaseDate}</span>
                         </div>
-                        <h4 className="font-serif text-base font-bold text-white mt-1">{track.title}</h4>
+                        <h4 className="font-serif text-base font-bold !text-white text-white mt-1" style={{ color: '#ffffff' }}>{track.title}</h4>
                         <p className="text-xs text-slate-400 line-clamp-1">{track.description}</p>
                       </div>
                       <div className="flex items-center justify-end gap-2 mt-3 pt-2 border-t border-slate-800">
@@ -1085,10 +1085,10 @@ export default function AdminPanel({
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-2xl w-full my-8 text-slate-100 shadow-2xl relative"
+              className="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-2xl w-full text-slate-100 shadow-2xl relative max-h-[90vh] flex flex-col"
             >
-              <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
-                <h3 className="font-serif text-xl font-bold text-white">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-4 shrink-0">
+                <h3 className="font-serif text-xl font-bold !text-white text-white" style={{ color: '#ffffff' }}>
                   {editingBlog ? "Edit Blog Article" : "Create New Blog Article"}
                 </h3>
                 <button 
@@ -1099,7 +1099,7 @@ export default function AdminPanel({
                 </button>
               </div>
 
-              <form onSubmit={handleSaveBlog} className="space-y-4 text-xs">
+              <form onSubmit={handleSaveBlog} className="space-y-4 text-xs overflow-y-auto pr-2 flex-1 scrollbar-thin scrollbar-thumb-slate-700">
                 <div>
                   <label className="block text-slate-400 uppercase font-mono mb-1 font-bold">Article Title</label>
                   <input 
@@ -1164,7 +1164,7 @@ export default function AdminPanel({
                 <div>
                   <label className="block text-slate-400 uppercase font-mono mb-1 font-bold">Full Article Content</label>
                   <textarea 
-                    rows={6}
+                    rows={5}
                     required
                     value={blogFormData.content}
                     onChange={(e) => setBlogFormData({ ...blogFormData, content: e.target.value })}
@@ -1217,7 +1217,7 @@ export default function AdminPanel({
                   </label>
                 </div>
 
-                <div className="pt-4 flex items-center justify-end gap-3 border-t border-slate-800">
+                <div className="pt-4 flex items-center justify-end gap-3 border-t border-slate-800 shrink-0 sticky bottom-0 bg-slate-900">
                   <button
                     type="button"
                     onClick={() => setIsBlogModalOpen(false)}
@@ -1246,10 +1246,10 @@ export default function AdminPanel({
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-lg w-full my-8 text-slate-100 shadow-2xl relative"
+              className="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-lg w-full text-slate-100 shadow-2xl relative max-h-[90vh] flex flex-col"
             >
-              <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
-                <h3 className="font-serif text-xl font-bold text-white">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-4 shrink-0">
+                <h3 className="font-serif text-xl font-bold !text-white text-white" style={{ color: '#ffffff' }}>
                   {editingMusic ? "Edit Music Track" : "Add Music Track"}
                 </h3>
                 <button onClick={() => setIsMusicModalOpen(false)} className="p-1.5 text-slate-400 hover:text-white">
@@ -1257,7 +1257,7 @@ export default function AdminPanel({
                 </button>
               </div>
 
-              <form onSubmit={handleSaveMusic} className="space-y-4 text-xs">
+              <form onSubmit={handleSaveMusic} className="space-y-4 text-xs overflow-y-auto pr-1 flex-1">
                 <div>
                   <label className="block text-slate-400 uppercase font-mono mb-1 font-bold">Track Title</label>
                   <input 
@@ -1315,7 +1315,7 @@ export default function AdminPanel({
                   />
                 </div>
 
-                <div className="pt-2 flex items-center justify-end gap-3 border-t border-slate-800">
+                <div className="pt-2 flex items-center justify-end gap-3 border-t border-slate-800 shrink-0 sticky bottom-0 bg-slate-900">
                   <button type="button" onClick={() => setIsMusicModalOpen(false)} className="px-4 py-2 rounded-xl bg-slate-800">Cancel</button>
                   <button type="submit" className="px-5 py-2 rounded-xl bg-brand-purple font-bold">Save Track</button>
                 </div>
@@ -1333,10 +1333,10 @@ export default function AdminPanel({
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-lg w-full my-8 text-slate-100 shadow-2xl relative"
+              className="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-lg w-full text-slate-100 shadow-2xl relative max-h-[90vh] flex flex-col"
             >
-              <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
-                <h3 className="font-serif text-xl font-bold text-white">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-4 shrink-0">
+                <h3 className="font-serif text-xl font-bold !text-white text-white" style={{ color: '#ffffff' }}>
                   {editingBeauty ? "Edit Beauty Item" : "Add Beauty Item"}
                 </h3>
                 <button onClick={() => setIsBeautyModalOpen(false)} className="p-1.5 text-slate-400 hover:text-white">
@@ -1344,7 +1344,7 @@ export default function AdminPanel({
                 </button>
               </div>
 
-              <form onSubmit={handleSaveBeauty} className="space-y-4 text-xs">
+              <form onSubmit={handleSaveBeauty} className="space-y-4 text-xs overflow-y-auto pr-1 flex-1">
                 <div>
                   <label className="block text-slate-400 uppercase font-mono mb-1 font-bold">Product Name</label>
                   <input 
@@ -1404,7 +1404,7 @@ export default function AdminPanel({
                   />
                 </div>
 
-                <div className="pt-2 flex items-center justify-end gap-3 border-t border-slate-800">
+                <div className="pt-2 flex items-center justify-end gap-3 border-t border-slate-800 shrink-0 sticky bottom-0 bg-slate-900">
                   <button type="button" onClick={() => setIsBeautyModalOpen(false)} className="px-4 py-2 rounded-xl bg-slate-800">Cancel</button>
                   <button type="submit" className="px-5 py-2 rounded-xl bg-brand-purple font-bold">Save Recommendation</button>
                 </div>
@@ -1422,10 +1422,10 @@ export default function AdminPanel({
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-lg w-full my-8 text-slate-100 shadow-2xl relative"
+              className="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-lg w-full text-slate-100 shadow-2xl relative max-h-[90vh] flex flex-col"
             >
-              <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
-                <h3 className="font-serif text-xl font-bold text-white">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-4 shrink-0">
+                <h3 className="font-serif text-xl font-bold !text-white text-white" style={{ color: '#ffffff' }}>
                   {editingFashion ? "Edit Fashion Look" : "Add Fashion Look"}
                 </h3>
                 <button onClick={() => setIsFashionModalOpen(false)} className="p-1.5 text-slate-400 hover:text-white">
@@ -1433,7 +1433,7 @@ export default function AdminPanel({
                 </button>
               </div>
 
-              <form onSubmit={handleSaveFashion} className="space-y-4 text-xs">
+              <form onSubmit={handleSaveFashion} className="space-y-4 text-xs overflow-y-auto pr-1 flex-1">
                 <div>
                   <label className="block text-slate-400 uppercase font-mono mb-1 font-bold">Look Title</label>
                   <input 
@@ -1482,7 +1482,7 @@ export default function AdminPanel({
                   />
                 </div>
 
-                <div className="pt-2 flex items-center justify-end gap-3 border-t border-slate-800">
+                <div className="pt-2 flex items-center justify-end gap-3 border-t border-slate-800 shrink-0 sticky bottom-0 bg-slate-900">
                   <button type="button" onClick={() => setIsFashionModalOpen(false)} className="px-4 py-2 rounded-xl bg-slate-800">Cancel</button>
                   <button type="submit" className="px-5 py-2 rounded-xl bg-brand-purple font-bold">Save Look</button>
                 </div>
