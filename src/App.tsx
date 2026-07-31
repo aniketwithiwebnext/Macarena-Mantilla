@@ -20,6 +20,16 @@ const macarenaLogoUrl = "https://gjoznmzw2bc0wpip.public.blob.vercel-storage.com
 import { BLOG_POSTS, MUSIC_RELEASES, BEAUTY_PRODUCTS, FASHION_LOOKS, PRICING_PLANS } from "./data";
 import { BlogPost, MusicRelease, FashionLook, BeautyProduct, SiteSettings, ContactMessage } from "./types";
 import { playAmbientSynth, stopAmbientSynth } from "./utils/audio";
+import { 
+  subscribeBlogs, subscribeMusic, subscribeBeauty, subscribeFashion, 
+  subscribeSettings, subscribeSubscribers, subscribeMessages,
+  saveBlogToFirestore, deleteBlogFromFirestore,
+  saveMusicToFirestore, deleteMusicFromFirestore,
+  saveBeautyToFirestore, deleteBeautyFromFirestore,
+  saveFashionToFirestore, deleteFashionFromFirestore,
+  saveSettingsToFirestore, addSubscriberToFirestore,
+  saveMessageToFirestore, deleteMessageFromFirestore
+} from "./lib/firestoreSync";
 
 export default function App() {
   // Scroll Progress
@@ -84,7 +94,28 @@ export default function App() {
     return saved ? JSON.parse(saved) : [];
   });
 
-  // Sync Datasets to LocalStorage
+  // Real-time Firestore Subscriptions
+  useEffect(() => {
+    const unsubBlogs = subscribeBlogs((data) => setBlogs(data));
+    const unsubMusic = subscribeMusic((data) => setMusic(data));
+    const unsubBeauty = subscribeBeauty((data) => setBeauty(data));
+    const unsubFashion = subscribeFashion((data) => setFashion(data));
+    const unsubSettings = subscribeSettings((data) => setSiteSettings(data));
+    const unsubSubscribers = subscribeSubscribers((data) => setSubscribedEmails(data));
+    const unsubMessages = subscribeMessages((data) => setContactMessages(data));
+
+    return () => {
+      unsubBlogs();
+      unsubMusic();
+      unsubBeauty();
+      unsubFashion();
+      unsubSettings();
+      unsubSubscribers();
+      unsubMessages();
+    };
+  }, []);
+
+  // Sync Datasets to LocalStorage as fallback
   useEffect(() => {
     localStorage.setItem("macarena_blogs", JSON.stringify(blogs));
   }, [blogs]);
@@ -133,6 +164,7 @@ export default function App() {
       id: "blog-" + Date.now()
     };
     setBlogs((prev) => [newBlog, ...prev]);
+    saveBlogToFirestore(newBlog);
   };
 
   const handleEditBlog = (updatedBlog: BlogPost) => {
@@ -140,6 +172,7 @@ export default function App() {
     if (selectedPost?.id === updatedBlog.id) {
       setSelectedPost(updatedBlog);
     }
+    saveBlogToFirestore(updatedBlog);
   };
 
   const handleDeleteBlog = (id: string) => {
@@ -147,6 +180,7 @@ export default function App() {
     if (selectedPost?.id === id) {
       setSelectedPost(null);
     }
+    deleteBlogFromFirestore(id);
   };
 
   // Music CRUD Handlers
@@ -156,14 +190,17 @@ export default function App() {
       id: "music-" + Date.now()
     };
     setMusic((prev) => [newTrack, ...prev]);
+    saveMusicToFirestore(newTrack);
   };
 
   const handleEditMusic = (updatedTrack: MusicRelease) => {
     setMusic((prev) => prev.map((m) => (m.id === updatedTrack.id ? updatedTrack : m)));
+    saveMusicToFirestore(updatedTrack);
   };
 
   const handleDeleteMusic = (id: string) => {
     setMusic((prev) => prev.filter((m) => m.id !== id));
+    deleteMusicFromFirestore(id);
   };
 
   // Beauty CRUD Handlers
@@ -173,14 +210,17 @@ export default function App() {
       id: "beauty-" + Date.now()
     };
     setBeauty((prev) => [newProd, ...prev]);
+    saveBeautyToFirestore(newProd);
   };
 
   const handleEditBeauty = (updatedProd: BeautyProduct) => {
     setBeauty((prev) => prev.map((p) => (p.id === updatedProd.id ? updatedProd : p)));
+    saveBeautyToFirestore(updatedProd);
   };
 
   const handleDeleteBeauty = (id: string) => {
     setBeauty((prev) => prev.filter((p) => p.id !== id));
+    deleteBeautyFromFirestore(id);
   };
 
   // Fashion CRUD Handlers
@@ -190,23 +230,28 @@ export default function App() {
       id: "fashion-" + Date.now()
     };
     setFashion((prev) => [newLook, ...prev]);
+    saveFashionToFirestore(newLook);
   };
 
   const handleEditFashion = (updatedLook: FashionLook) => {
     setFashion((prev) => prev.map((l) => (l.id === updatedLook.id ? updatedLook : l)));
+    saveFashionToFirestore(updatedLook);
   };
 
   const handleDeleteFashion = (id: string) => {
     setFashion((prev) => prev.filter((l) => l.id !== id));
+    deleteFashionFromFirestore(id);
   };
 
   // Settings & Contact Handlers
   const handleUpdateSettings = (newSettings: SiteSettings) => {
     setSiteSettings(newSettings);
+    saveSettingsToFirestore(newSettings);
   };
 
   const handleDeleteMessage = (id: string) => {
     setContactMessages((prev) => prev.filter((m) => m.id !== id));
+    deleteMessageFromFirestore(id);
   };
 
   const handleResetData = () => {
@@ -326,6 +371,7 @@ export default function App() {
     if (!newsletterEmail.trim()) return;
     if (!subscribedEmails.includes(newsletterEmail)) {
       setSubscribedEmails((prev) => [...prev, newsletterEmail]);
+      addSubscriberToFirestore(newsletterEmail);
     }
     setNewsletterSuccess(true);
     setTimeout(() => {
@@ -348,6 +394,7 @@ export default function App() {
       date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
     };
     setContactMessages((prev) => [newMsg, ...prev]);
+    saveMessageToFirestore(newMsg);
     setContactSubmitted(true);
     showToast("Message sent to Macarena!");
   };

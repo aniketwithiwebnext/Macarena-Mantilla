@@ -1,0 +1,46 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Blogs collection
+    match /blogs/{blogId} {
+      allow read, write: if true;
+    }
+
+    // Music collection
+    match /music/{musicId} {
+      allow read, write: if true;
+    }
+
+    // Beauty collection
+    match /beauty/{beautyId} {
+      allow read, write: if true;
+    }
+
+    // Fashion collection
+    match /fashion/{fashionId} {
+      allow read, write: if true;
+    }
+
+    // Settings collection
+    match /settings/{settingId} {
+      allow read, write: if true;
+    }
+
+    // Subscribers collection
+    match /subscribers/{subscriberId} {
+      allow read, write: if true;
+    }
+
+    // Contact Messages collection
+    match /messages/{messageId} {
+      allow read, write: if true;
+    }
+  }
+}
+

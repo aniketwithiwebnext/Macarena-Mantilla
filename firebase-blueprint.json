@@ -1,0 +1,134 @@
+{
+  "entities": {
+    "BlogPost": {
+      "title": "BlogPost",
+      "description": "Blog and poetry articles",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 200 },
+        "summary": { "type": "string", "maxLength": 500 },
+        "content": { "type": "string", "maxLength": 10000 },
+        "category": { "type": "string", "enum": ["Writing", "Music", "Beauty", "Fashion", "Lifestyle"] },
+        "date": { "type": "string", "maxLength": 50 },
+        "readTime": { "type": "string", "maxLength": 50 },
+        "image": { "type": "string", "maxLength": 1000 },
+        "tags": { "type": "array" },
+        "isPremium": { "type": "boolean" }
+      },
+      "required": ["title", "summary", "content", "category", "date"]
+    },
+    "MusicRelease": {
+      "title": "MusicRelease",
+      "description": "Music singles, albums, EPs, and demos",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 200 },
+        "type": { "type": "string", "enum": ["Album", "Single", "EP", "Demo"] },
+        "releaseDate": { "type": "string", "maxLength": 50 },
+        "duration": { "type": "string", "maxLength": 50 },
+        "image": { "type": "string", "maxLength": 1000 },
+        "audioUrl": { "type": "string", "maxLength": 1000 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "spotifyEmbedId": { "type": "string", "maxLength": 200 },
+        "isPremiumOnly": { "type": "boolean" }
+      },
+      "required": ["title", "type", "releaseDate", "description"]
+    },
+    "BeautyProduct": {
+      "title": "BeautyProduct",
+      "description": "Beauty product recommendation",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 200 },
+        "brand": { "type": "string", "maxLength": 200 },
+        "category": { "type": "string", "enum": ["Skincare", "Makeup", "Hair", "Fragrance"] },
+        "rating": { "type": "number" },
+        "reviewText": { "type": "string", "maxLength": 2000 },
+        "affiliateLink": { "type": "string", "maxLength": 1000 },
+        "image": { "type": "string", "maxLength": 1000 },
+        "isFavorite": { "type": "boolean" }
+      },
+      "required": ["name", "brand", "category", "reviewText"]
+    },
+    "FashionLook": {
+      "title": "FashionLook",
+      "description": "Fashion lookbook outfit",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 200 },
+        "season": { "type": "string", "enum": ["Spring", "Summer", "Autumn", "Winter", "All"] },
+        "image": { "type": "string", "maxLength": 1000 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "tags": { "type": "array" }
+      },
+      "required": ["title", "season", "description"]
+    },
+    "Subscriber": {
+      "title": "Subscriber",
+      "description": "Newsletter subscriber email",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "maxLength": 200 },
+        "createdAt": { "type": "string", "maxLength": 100 }
+      },
+      "required": ["email"]
+    },
+    "ContactMessage": {
+      "title": "ContactMessage",
+      "description": "Contact form inquiry",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 200 },
+        "subject": { "type": "string", "maxLength": 200 },
+        "message": { "type": "string", "maxLength": 3000 },
+        "date": { "type": "string", "maxLength": 100 }
+      },
+      "required": ["name", "email", "message"]
+    },
+    "SiteSettings": {
+      "title": "SiteSettings",
+      "description": "Global site text configuration",
+      "type": "object",
+      "properties": {
+        "heroTitle": { "type": "string", "maxLength": 200 },
+        "heroBio": { "type": "string", "maxLength": 2000 },
+        "aboutText1": { "type": "string", "maxLength": 2000 },
+        "aboutText2": { "type": "string", "maxLength": 2000 },
+        "contactEmail": { "type": "string", "maxLength": 200 },
+        "contactPhone": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["heroTitle", "heroBio"]
+    }
+  },
+  "firestore": {
+    "/blogs/{blogId}": {
+      "schema": "BlogPost",
+      "description": "Collection of published blog and poetry posts."
+    },
+    "/music/{musicId}": {
+      "schema": "MusicRelease",
+      "description": "Collection of music releases and audio tracks."
+    },
+    "/beauty/{beautyId}": {
+      "schema": "BeautyProduct",
+      "description": "Collection of beauty product reviews."
+    },
+    "/fashion/{fashionId}": {
+      "schema": "FashionLook",
+      "description": "Collection of fashion looks."
+    },
+    "/subscribers/{subscriberId}": {
+      "schema": "Subscriber",
+      "description": "Newsletter subscribers list."
+    },
+    "/messages/{messageId}": {
+      "schema": "ContactMessage",
+      "description": "Contact inquiries."
+    },
+    "/settings/{settingId}": {
+      "schema": "SiteSettings",
+      "description": "Site global configuration settings."
+    }
+  }
+}
